@@ -1,4 +1,4 @@
-# dimofinf_camera_app
+# sout_app
 
 A new Flutter application.
 
