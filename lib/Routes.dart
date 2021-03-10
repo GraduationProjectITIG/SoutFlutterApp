@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-// import './utils/utils.dart';
-// import 'screens/screens.dart';
+import 'utils/page_route_name.dart';
+
+import './utils/utils.dart';
+import 'screens/screens.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,10 +16,10 @@ class Routes {
       //   return MaterialPageRoute<dynamic>(
       //       builder: (_) => Intro(), settings: settings);
       //   break;
-      // case PageRouteName.LOGIN:
-      //   return MaterialPageRoute<dynamic>(
-      //       builder: (_) => Login(), settings: settings);
-      //   break;
+      case PageRouteName.LOGIN:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => Login(), settings: settings);
+        break;
       // case PageRouteName.REGISTER:
       //   return MaterialPageRoute<dynamic>(
       //       builder: (_) => Register(), settings: settings);
@@ -78,9 +80,9 @@ class Routes {
       //   return MaterialPageRoute<dynamic>(
       //       builder: (_) => ChangePassword(), settings: settings);
       //   break;
-      // default:
-      //   return MaterialPageRoute<dynamic>(
-      //       builder: (_) => Splash(), settings: settings);
+      default:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => Login(), settings: settings);
     }
   }
 }

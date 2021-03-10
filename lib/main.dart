@@ -29,7 +29,7 @@ void main() async {
   await SentryFlutter.init(
     (options) {
       options.dsn =
-          'https://625d0f7805324aceb28c9ebe93bc84c3@o517861.ingest.sentry.io/5626830';
+          'https://df2902652cc64e6193b706b3a1c66f79@o517861.ingest.sentry.io/5664844';
     },
     appRunner: () => runApp(
       Phoenix(
