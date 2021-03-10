@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "652733963562",
-    "firebase_url": "https://fir-register-db8c6.firebaseio.com",
-    "project_id": "fir-register-db8c6",
-    "storage_bucket": "fir-register-db8c6.appspot.com"
+    "project_number": "706376997886",
+    "project_id": "sout-2d0f6",
+    "storage_bucket": "sout-2d0f6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:652733963562:android:c10328047362c0e4dc1253",
+        "mobilesdk_app_id": "1:706376997886:android:dcbc1820943e9be2217eaf",
         "android_client_info": {
-          "package_name": "com.ebraam.dimofinf_camera_app"
+          "package_name": "com.sout.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "652733963562-ohe9or4cv0sfh8d29obgp1s6fvbkhlrl.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ebraam.dimofinf_camera_app",
-            "certificate_hash": "9d20bbe8cc5720646182ee95a9dd2ce38ada36b5"
-          }
-        },
-        {
-          "client_id": "652733963562-m5bgkocl98lu39bnuhjokgbiae2o3cbb.apps.googleusercontent.com",
+          "client_id": "706376997886-6bn6pbb9aa2v96e0b2dvngvd88notg1e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDo7fklpQMQgAS7RXER3pXW2kZ3nr2FoGo"
+          "current_key": "AIzaSyBT-YSvAv-ATqfx5dnHPF090I9GotkxcR0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "652733963562-m5bgkocl98lu39bnuhjokgbiae2o3cbb.apps.googleusercontent.com",
+              "client_id": "706376997886-6bn6pbb9aa2v96e0b2dvngvd88notg1e.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
