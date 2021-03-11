@@ -39,16 +39,37 @@ class UserModel {
 
   Map<String, dynamic> toJson() {
     return {
-      //TODO continue
-      'id': id,
+      "id": this.id,
+      "firstName": this.firstName,
+      "secondName": this.lastName,
+      "email": this.email,
+      "favColor": this.favColor,
+      "favMode": this.favMode,
+      "mobile": this.mobile,
+      "gender": this.gender,
+      "picURL": this.picURL,
+      "coverPicURL": this.coverPicURL,
+      "birthDate": this.birthDate,
+      "blocked": this.blocked,
+      "privateAcc": this.privateAcc
     };
   }
 
   factory UserModel.fromDocument(DocumentSnapshot doc) {
     return UserModel(
-      //TODO continue
-      id: doc.data()["id"],
-    );
+        id: doc.data()["id"],
+        firstName: doc.data()["firstName"],
+        lastName: doc.data()["secondName"],
+        email: doc.data()["email"],
+        favColor: doc.data()["favColor"],
+        favMode: doc.data()["favMode"],
+        mobile: doc.data()["mobile"],
+        gender: doc.data()["gender"],
+        picURL: doc.data()["picURL"],
+        coverPicURL: doc.data()["coverPicURL"],
+        birthDate: doc.data()["birthDate"],
+        blocked: doc.data()["blocked"],
+        privateAcc: doc.data()["privateAcc"]);
   }
 
   Future<UserModel> login(email, password) async {
@@ -62,7 +83,17 @@ class UserModel {
             .doc(value.user.uid)
             .get()
             .then((user) {
-          //TODO continue
+          if (user != null) {
+            usr = UserModel.fromDocument(user);
+            this.islogin = true;
+          } else {
+            Fluttertoast.showToast(
+              msg: 'This user is deleted',
+              backgroundColor: Colors.red,
+              timeInSecForIosWeb: 10,
+            );
+            usr = null;
+          }
         });
       } else {
         Fluttertoast.showToast(
@@ -75,6 +106,13 @@ class UserModel {
     });
     return usr;
   }
+
+  Future<UserModel> register() async {}
+
+  Future resetPassword(email) async {}
+
+ Future editProfile(UserModel newUser) async {}
+
 
   Future<List<UserModel>> getUsers() async {
     List<UserModel> list = [];
