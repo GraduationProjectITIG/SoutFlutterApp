@@ -11,12 +11,12 @@ class UserBloc implements BaseBloc {
   Stream<UserModel> get stream => _userController.stream;
 
   Future login(email, password) async {
-    await _user.login(email, password);
+    // await _user.login(email, password);
 
     _userController.add(_user);
   }
 
-  bool isLogin() => _user.islogin;
+  bool get isLogin => _user.islogin;
 
   @override
   void dispose() {

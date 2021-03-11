@@ -20,21 +20,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    // sL<UserBloc>().login(email, password).then((value) => null);
-    return Scaffold(
-      body: StreamBuilder<UserModel>(
-          stream: sL<UserBloc>().stream,
-          builder: (context, snapshot) {
-            // snapshot.data;
-            return Container(
-              child: Column(
-                children: [
-                  sL<UserBloc>().isLogin()? Container() : SizedBox(),
-                ],
-              ),
-            );
-          }),
-    );
+    return Scaffold();
   }
 }
 
