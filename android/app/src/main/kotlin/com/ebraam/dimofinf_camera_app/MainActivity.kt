@@ -1,4 +1,4 @@
-package com.ebraam.dimofinf_camera_app
+package com.sout.app
 
 import io.flutter.embedding.android.FlutterActivity
 
