@@ -10,13 +10,43 @@ class UserBloc implements BaseBloc {
 
   Stream<UserModel> get stream => _userController.stream;
 
-  Future login(email, password) async {
-    // await _user.login(email, password);
+  UserModel get user => _user;
 
-    _userController.add(_user);
+  Future login(email, password) async {
+    await _user
+        .login(email, password)
+        .then((value) => _userController.add(value));
   }
 
   bool get isLogin => _user.islogin;
+
+  Future register({
+    firstName,
+    lastName,
+    email,
+    password,
+    confirmPassword,
+    mobile,
+    gender,
+    birthDate,
+  }) async {
+    UserModel user = UserModel();
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.email = email;
+    user.password = password;
+    user.confirmPassword = confirmPassword;
+    user.mobile = mobile;
+    user.gender = gender;
+    user.birthDate = birthDate;
+    await _user.register(user);
+  }
+
+  // Future updateProfile() async {} //TODO later
+
+  Future resetPassword(email) async {
+    await _user.resetPassword(email);
+  }
 
   @override
   void dispose() {

@@ -14,7 +14,7 @@ static List<PostModel> list = [];
 
   Stream<PostModel> get postStream => _postController.stream;
 
-Stream<PostModel> get postListStream => _postListController.stream;
+Stream<List<PostModel>> get postListStream => _postListController.stream;
 
   // Future getAllPosts() async {
   //   await  post.getAllPosts().then((value){
