@@ -21,6 +21,14 @@ Drawer buildDrawer(BuildContext context) {
         ),
         ListTile(
           leading: Icon(
+            FontAwesomeIcons.home,
+            size: 32,
+          ),
+          title: Text('Home'),
+          onTap: () {},
+        ),
+        ListTile(
+          leading: Icon(
             FontAwesomeIcons.bell,
             size: 32,
           ),
