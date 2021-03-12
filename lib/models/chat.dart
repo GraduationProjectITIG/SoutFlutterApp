@@ -77,4 +77,18 @@ class ChatModel {
     print('chats$chats');
     return chats;
   }
+
+  sendMessage(MessageModel msg, String chatId) {
+    // ignore: deprecated_member_use
+    DocumentReference documentReference =
+        // ignore: deprecated_member_use
+        Firestore.instance.collection('chat/$chatId/1').document();
+
+    // ignore: deprecated_member_use
+    String messageId = documentReference.documentID;
+    msg.id = messageId;
+    msg.date = new Timestamp.now();
+    // ignore: deprecated_member_use
+    documentReference.set(msg.toJson());
+  }
 }
