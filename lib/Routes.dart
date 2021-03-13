@@ -20,10 +20,10 @@ class Routes {
         return MaterialPageRoute<dynamic>(
             builder: (_) => Login(), settings: settings);
         break;
-      // case PageRouteName.REGISTER:
-      //   return MaterialPageRoute<dynamic>(
-      //       builder: (_) => Register(), settings: settings);
-      //   break;
+      case PageRouteName.SIGNUP:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => Signup(), settings: settings);
+        break;
       // case PageRouteName.FORGET_PASSWORD:
       //   return MaterialPageRoute<dynamic>(
       //       builder: (_) => ForgetPassword(), settings: settings);

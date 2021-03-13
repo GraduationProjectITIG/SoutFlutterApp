@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
             locale: snapshot.data.locale,
             debugShowCheckedModeBanner: false,
             theme: snapshot.data.themeData,
-            initialRoute: PageRouteName.INITIAL,
+            initialRoute: PageRouteName.LOGIN,
             onGenerateRoute: Routes.generateRoute,
           );
         });

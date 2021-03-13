@@ -20,7 +20,7 @@ class UserBloc implements BaseBloc {
 
   bool get isLogin => _user.islogin;
 
-  Future register({
+  Future register(
     firstName,
     lastName,
     email,
@@ -29,7 +29,7 @@ class UserBloc implements BaseBloc {
     mobile,
     gender,
     birthDate,
-  }) async {
+  ) async {
     UserModel user = UserModel();
     user.firstName = firstName;
     user.lastName = lastName;
@@ -39,6 +39,8 @@ class UserBloc implements BaseBloc {
     user.mobile = mobile;
     user.gender = gender;
     user.birthDate = birthDate;
+    print("regUsBloc");
+    print(email);
     await _user.register(user);
   }
 

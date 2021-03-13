@@ -92,13 +92,19 @@ class UserModel {
               if (usr.blocked) {
                 this._islogin = false;
                 usr = null;
-Fluttertoast.showToast(
-                msg: 'This user is blocked',
-                backgroundColor: Colors.red,
-                timeInSecForIosWeb: 10,
-              );
-              }else
-              this._islogin = true;
+                Fluttertoast.showToast(
+                  msg: 'This user is blocked',
+                  backgroundColor: Colors.red,
+                  timeInSecForIosWeb: 10,
+                );
+              } else {
+                this._islogin = true;
+                Fluttertoast.showToast(
+                  msg: 'Welcomeeee',
+                  backgroundColor: Colors.pink,
+                  timeInSecForIosWeb: 10,
+                );
+              }
             } else {
               Fluttertoast.showToast(
                 msg: 'This user is deleted',
@@ -127,26 +133,39 @@ Fluttertoast.showToast(
     return usr;
   }
 
-  Future<UserModel> register(UserModel user) async {
-    if (user.password == user.confirmPassword) {
+  Future<UserModel> register(UserModel userN) async {
+    print("regUs");
+    print(userN.email);
+    if (userN.password == userN.confirmPassword) {
       try {
         await _auth
             .createUserWithEmailAndPassword(
-                email: user.email, password: user.password)
+                email: userN.email, password: userN.password)
             .then((value) async {
+          print("created");
           await _firestore
               .collection('Users')
               .doc(value.user.uid)
-              .set(user.toJson());
+              .set(userN.toJson());
+          Fluttertoast.showToast(
+            msg: 'Created Successfully',
+            backgroundColor: Colors.pink,
+            timeInSecForIosWeb: 10,
+          );
         });
       } catch (e, s) {
+        Fluttertoast.showToast(
+          msg: "Couldn't create, Please tyr again later",
+          backgroundColor: Colors.red,
+          timeInSecForIosWeb: 10,
+        );
         await se.Sentry.captureException(
           e,
           stackTrace: s,
         );
         return null;
       }
-      return user;
+      return userN;
     } else {
       Fluttertoast.showToast(
         msg: 'Password and password confirm is not matched',
@@ -158,12 +177,14 @@ Fluttertoast.showToast(
   }
 
   Future resetPassword(email) async {
+    print("email");
+    print(email);
     try {
       await _auth
           .sendPasswordResetEmail(email: email)
           .then((value) => Fluttertoast.showToast(
                 msg: 'Password reset email has been sent',
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.pink,
                 timeInSecForIosWeb: 10,
               ));
     } catch (e, s) {
