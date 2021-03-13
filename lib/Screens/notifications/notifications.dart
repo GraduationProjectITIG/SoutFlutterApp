@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:sout/Screens/drawer.dart';
 import 'package:sout/blocs/blocs.dart';
 import 'package:sout/utils/scroll_physics_like_ios.dart';
-
 import '../../service_locator.dart';
 
 class Notifications extends StatefulWidget {

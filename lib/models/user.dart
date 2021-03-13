@@ -193,13 +193,5 @@ Fluttertoast.showToast(
     }
   }
 
-  // Future<List<UserModel>> getUsers() async {
-  //   List<UserModel> list = [];
-  //   //TODO add firestore method
-  //   await _firestore.collection('Users').get().then((value) {
-  //     var users = value.docs;
-  //   });
-  //   return list;
-  // }
 
 }
