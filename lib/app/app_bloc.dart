@@ -19,7 +19,7 @@ class AppBloc implements BaseBloc {
   }
 
   static final AppState initialState = AppState(
-    const Locale('ar'),
+    const Locale('en'),
     themeDataLight,
   );
   final BehaviorSubject<AppState> _appController =
