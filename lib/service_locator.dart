@@ -17,21 +17,21 @@ Future<void> setupLocators() async {
   final PostBloc postBloc = PostBloc();
   final ChatBloc chatBloc = ChatBloc();
   final MessageBloc messageBloc = MessageBloc();
-  final InsterestBloc interestBloc = InsterestBloc();
+  // final InsterestBloc interestBloc = InsterestBloc();
 
   usedBlocs.add(appBloc);
   usedBlocs.add(userBloc);
   usedBlocs.add(postBloc);
   usedBlocs.add(chatBloc);
   usedBlocs.add(messageBloc);
-  usedBlocs.add(interestBloc);
+  // usedBlocs.add(interestBloc);
 
   sL.registerSingleton<AppBloc>(appBloc);
   sL.registerSingleton<UserBloc>(userBloc);
   sL.registerSingleton<PostBloc>(postBloc);
   sL.registerSingleton<ChatBloc>(chatBloc);
   sL.registerSingleton<MessageBloc>(messageBloc);
-  sL.registerSingleton<InsterestBloc>(interestBloc);
+  // sL.registerSingleton<InsterestBloc>(interestBloc);
 }
 
 void disposeBlocs() {

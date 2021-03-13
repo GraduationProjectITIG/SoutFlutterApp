@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import '../exetensions/exetnsion.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import '../exetensions/exetnsion.dart';
 import '../utils/utils.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
+// final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Signup extends StatefulWidget {
   final String title = 'Registration';

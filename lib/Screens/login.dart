@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sout/blocs/blocs.dart';
 import 'package:sout/models/models.dart';
-
 import '../service_locator.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Login extends StatefulWidget {
   final String title = 'Sign In';
