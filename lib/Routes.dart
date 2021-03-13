@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'Screens/screens.dart';
 import 'utils/page_route_name.dart';
 
 import './utils/utils.dart';
-import 'screens/screens.dart';
+// import 'screens/screens.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case PageRouteName.INITIAL:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => Home(), settings: settings);
+        break;
       // case PageRouteName.INITIAL:
       //   return MaterialPageRoute<dynamic>(
       //       builder: (_) => Splash(), settings: settings);
