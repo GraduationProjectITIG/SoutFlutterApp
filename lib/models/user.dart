@@ -89,6 +89,15 @@ class UserModel {
               .then((user) {
             if (user != null) {
               usr = UserModel.fromDocument(user);
+              if (usr.blocked) {
+                this._islogin = false;
+                usr = null;
+Fluttertoast.showToast(
+                msg: 'This user is blocked',
+                backgroundColor: Colors.red,
+                timeInSecForIosWeb: 10,
+              );
+              }else
               this._islogin = true;
             } else {
               Fluttertoast.showToast(
@@ -184,13 +193,5 @@ class UserModel {
     }
   }
 
-  // Future<List<UserModel>> getUsers() async {
-  //   List<UserModel> list = [];
-  //   //TODO add firestore method
-  //   await _firestore.collection('Users').get().then((value) {
-  //     var users = value.docs;
-  //   });
-  //   return list;
-  // }
 
 }
