@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sout/Screens/home/audio.dart';
 
 // ignore: must_be_immutable
 class PostCard extends StatefulWidget {
@@ -106,7 +107,10 @@ class _PostCardState extends State<PostCard> {
                               widget.description,
                               style: TextStyle(fontSize: 19),
                             ),
-                          )
+                          ),
+                          Audio(
+                              url:
+                                  "https://luan.xyz/files/audio/ambient_c_motion.mp3")
                         ],
                       ),
                     )
