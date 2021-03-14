@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sout/Screens/home/addPost.dart';
 import 'package:sout/Screens/home/postCard.dart';
 import 'package:sout/blocs/blocs.dart';
 //import 'package:sout/blocs/chatbloc.dart';
@@ -21,7 +22,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.redAccent,
+      ),
       // body: Row(
       //   children: [
       //     Center(
@@ -61,6 +64,17 @@ class _HomeState extends State<Home> {
               description: 'Lorem ipsum ay kalam',
             );
           }),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.redAccent,
+        child: Icon(
+          Icons.settings_voice_sharp,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddPost()));
+        },
+      ),
     );
   }
 }

@@ -71,7 +71,7 @@ class _PostCardState extends State<PostCard> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(169, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(120, 0, 0, 0),
                       child: PopupMenuButton(
                         icon: Icon(
                           Icons.more_horiz,
@@ -121,7 +121,7 @@ class _PostCardState extends State<PostCard> {
                   thickness: 1,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                   child: Row(
                     children: [
                       Padding(
