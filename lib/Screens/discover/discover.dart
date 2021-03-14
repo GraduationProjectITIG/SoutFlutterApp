@@ -37,6 +37,10 @@ class _DiscoverState extends State<Discover> {
         appBar: AppBar(
           backgroundColor: Colors.red[700],
           bottom: TabBar(
+            labelStyle: TextStyle(
+                fontSize: 18.0, fontFamily: 'Family Name'), //For Selected tab
+            unselectedLabelStyle:
+                TextStyle(fontSize: 15.0, fontFamily: 'Family Name'),
             isScrollable: true,
             tabs: [
               for (var talent in talents) Tab(text: talent.name),

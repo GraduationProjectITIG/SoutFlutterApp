@@ -44,6 +44,8 @@ class _TalentTabState extends State<TalentTab> {
               img: post.image,
               description: post.description,
               date: DateFormat('yyyy-MM-dd').format(post.date.toDate()).toString(),
+              audio: post.audio,
+              likes: post.like==null?0:post.like.length,
             )
         ],
       ),

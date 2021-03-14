@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sout/Screens/home/audio.dart';
 
 // ignore: must_be_immutable
 class PostCard extends StatefulWidget {
@@ -17,11 +18,11 @@ class _PostCardState extends State<PostCard> {
   // String _selectedItem = 'Bookmark';
   List _options = ['Bookmark', 'Report Post'];
   final _text = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
-       decoration: new BoxDecoration(
+      decoration: new BoxDecoration(
         boxShadow: [
           new BoxShadow(
             color: Colors.grey[300],
@@ -30,11 +31,10 @@ class _PostCardState extends State<PostCard> {
         ],
       ),
       child: Card(
-         shape: RoundedRectangleBorder(
-                // side: BorderSide(width: 0.2),
-                borderRadius: BorderRadius.circular(12)),
-          
-         margin: EdgeInsets.fromLTRB(7,0,7,7),
+        shape: RoundedRectangleBorder(
+            // side: BorderSide(width: 0.2),
+            borderRadius: BorderRadius.circular(12)),
+        margin: EdgeInsets.fromLTRB(7, 0, 7, 7),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
@@ -71,9 +71,13 @@ class _PostCardState extends State<PostCard> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(169, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(120, 0, 0, 0),
                       child: PopupMenuButton(
-                        icon: Icon(Icons.more_horiz,color: Colors.red[900],size: 26,),
+                        icon: Icon(
+                          Icons.more_horiz,
+                          color: Colors.red[900],
+                          size: 26,
+                        ),
                         itemBuilder: (BuildContext bc) {
                           return _options
                               .map((x) => PopupMenuItem(
@@ -103,7 +107,10 @@ class _PostCardState extends State<PostCard> {
                               widget.description,
                               style: TextStyle(fontSize: 19),
                             ),
-                          )
+                          ),
+                          Audio(
+                              url:
+                                  "https://luan.xyz/files/audio/ambient_c_motion.mp3")
                         ],
                       ),
                     )
@@ -114,7 +121,7 @@ class _PostCardState extends State<PostCard> {
                   thickness: 1,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(23, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                   child: Row(
                     children: [
                       Padding(
@@ -202,7 +209,8 @@ class _PostCardState extends State<PostCard> {
                             ),
                             hintStyle: new TextStyle(color: Colors.grey[700]),
                             hintText: "Write a comment...",
-                            contentPadding: EdgeInsets.fromLTRB(14, 11.5, 0, 11.5),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(14, 11.5, 0, 11.5),
                             isDense: true,
                           ),
                         ),
