@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:sout/blocs/blocs.dart';
 import 'package:sout/models/models.dart';
 import 'package:sout/utils/page_route_name.dart';
 import 'package:sout/utils/validator.dart';
 import '../service_locator.dart';
 import '../exetensions/exetnsion.dart';
+import 'bookmarks/bookmarks.dart';
 import 'signup.dart';
 import '../blocs/userbloc.dart';
 
@@ -79,6 +81,7 @@ class MyCustomForm extends StatefulWidget {
 
 class MyCustomFormState extends State<MyCustomForm> {
   UserBloc _userBloc = UserBloc();
+  UserModel uss = UserModel();
   // UserBloc get user => _userBloc;
   bool loading = false;
   BuildContext dialogContext;
@@ -126,12 +129,23 @@ class MyCustomFormState extends State<MyCustomForm> {
                 Expanded(
                   // padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (!_formKey.currentState.validate()) {
                         return;
                       }
-                      _userBloc.login(
-                          _emailController.text, _passwordController.text);
+                      // uss = await _userBloc.login(
+                      //     _emailController.text, _passwordController.text);
+
+                      // if (sL<UserBloc>().isLogin) {
+                      //   print("loginmmmm");
+                      //   print(uss.firstName);
+                      // }
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Bookmarks(logedUser: uss)));
+
                       // _signInWithEmailAndPassword(context);
                     },
                     child: Text('Login'),
@@ -180,7 +194,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                                             end: Alignment.bottomCenter,
                                             colors: [Colors.pink, Colors.white],
                                           )),
-                                      height: 213.0,
+                                      height: 226.0,
                                       width: 360.0,
                                       child: ListView(
                                         children: <Widget>[

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sentry/sentry.dart' as se;
+import 'package:sout/Screens/bookmarks/bookmarks.dart';
 
 class UserModel {
   String id,
@@ -104,6 +105,7 @@ class UserModel {
                   backgroundColor: Colors.pink,
                   timeInSecForIosWeb: 10,
                 );
+                return usr;
               }
             } else {
               Fluttertoast.showToast(
