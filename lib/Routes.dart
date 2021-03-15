@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sout/Screens/discover/discover.dart';
+import 'package:sout/Screens/discover/test.dart';
 import 'package:sout/Screens/screens.dart';
 
 import 'Screens/home/home.dart';
@@ -14,7 +15,7 @@ class Routes {
     switch (settings.name) {
       case PageRouteName.INITIAL:
         return MaterialPageRoute<dynamic>(
-            builder: (_) => Discover(), settings: settings);
+            builder: (_) => Test(), settings: settings);
         break;
       // return MaterialPageRoute<dynamic>(
       //     builder: (_) => Login(), settings: settings);

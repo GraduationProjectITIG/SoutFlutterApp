@@ -32,6 +32,12 @@ class _TalentTabState extends State<TalentTab> {
     setState(() {});
   }
 
+  // getPostLikes(PostModel post) async {
+    
+  //   int x = await postModel.getPostLikes(post);
+  //   return x;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,10 +49,12 @@ class _TalentTabState extends State<TalentTab> {
               ownerImg: post.owner["picURL"],
               img: post.image,
               description: post.description,
-              date: DateFormat('yyyy-MM-dd').format(post.date.toDate()).toString(),
+              date: DateFormat('yyyy-MM-dd')
+                  .format(post.date.toDate())
+                  .toString(),
               audio: post.audio,
               likes: post.like==null?0:post.like.length,
-            )
+            ),
         ],
       ),
     );

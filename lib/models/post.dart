@@ -101,6 +101,17 @@ class PostModel {
     Firestore.instance.collection('post').doc(id).delete();
   }
 
+  Future<int> getPostLikes(PostModel post) async {
+    // ignore: deprecated_member_use
+    CollectionReference ref =
+        // ignore: deprecated_member_use
+        Firestore.instance.collection('post').doc(post.id).collection('like');
+    // ignore: deprecated_member_use
+    QuerySnapshot likesQuery = await ref.getDocuments();
+
+    return likesQuery.docs.length;
+  }
+
   Future<List<PostModel>> getPostsbyTalent(String talentId) async {
     // ignore: deprecated_member_use
     CollectionReference ref = Firestore.instance.collection('post');
@@ -145,4 +156,3 @@ class PostModel {
     return postsHashMap.values.toList();
   }
 }
-

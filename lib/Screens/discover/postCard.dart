@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sout/Screens/discover/comment.dart';
 import 'package:sout/Screens/home/audio.dart';
+import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class PostCard extends StatefulWidget {
@@ -10,6 +12,7 @@ class PostCard extends StatefulWidget {
   String date;
   String audio;
   int likes;
+  List<dynamic> comments;
   PostCard(
       {this.ownerName,
       this.ownerImg,
@@ -17,7 +20,7 @@ class PostCard extends StatefulWidget {
       this.img,
       this.date,
       this.audio,
-      this.likes});
+      this.likes,this.comments});
   @override
   _PostCardState createState() => _PostCardState();
 }
@@ -26,9 +29,11 @@ class _PostCardState extends State<PostCard> {
   // String _selectedItem = 'Bookmark';
   List _options = ['Bookmark', 'Report Post'];
   final _text = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Container(
       decoration: new BoxDecoration(
         boxShadow: [
@@ -53,7 +58,7 @@ class _PostCardState extends State<PostCard> {
                     radius: 29.0,
                     backgroundImage: NetworkImage(widget.ownerImg),
                     backgroundColor: Colors.transparent,
-                  ),
+                  ),SizedBox(width: 7),
                   Column(
                     children: [
                       Text(widget.ownerName,
@@ -78,7 +83,7 @@ class _PostCardState extends State<PostCard> {
                     ],
                   ),
                   Align(
-                    alignment:Alignment.topRight,
+                    alignment: Alignment.topRight,
                     child: PopupMenuButton(
                       icon: Icon(
                         Icons.more_horiz,
@@ -132,7 +137,7 @@ class _PostCardState extends State<PostCard> {
                 thickness: 1,
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(2, 0, 0, 0),
                 child: Row(
                   children: [
                     Padding(
@@ -196,11 +201,61 @@ class _PostCardState extends State<PostCard> {
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(6, 0, 6, 0),
-                          child: Icon(
-                            Icons.comment_outlined,
-                            size: 22,
-                            color: Colors.red[900],
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.comment_outlined,
+                              size: 22,
+                              color: Colors.red[900],
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  
+                                  return Dialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    elevation: 0,
+                                    child: Container(
+                                      height: 540.0,
+                                      width: mediaQuery.size.width,
+                                      child: ListView(
+                                        children: <Widget>[
+                                          SizedBox(height: 20),
+                                          Center(
+                                            child: Text(
+                                              "Comments",
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
+                                          Comment(
+                                              ownerImg:
+                                                  'https://picsum.photos/50/50',
+                                              ownerName: "Mai Ahmed",
+                                              desc: "Good Post",
+                                              date: DateFormat('yyyy-MM-dd')
+                                                  .format(DateTime.now())
+                                                  .toString()),
+                                                  Comment(
+                                              ownerImg:
+                                                  'https://picsum.photos/50/50',
+                                              ownerName: "Mai Ahmed",
+                                              desc: "Hello Hello",
+                                              date: DateFormat('yyyy-MM-dd')
+                                                  .format(DateTime.now())
+                                                  .toString())
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ),
                         Text("Comment",
@@ -258,6 +313,8 @@ class _PostCardState extends State<PostCard> {
                         ),
                         onPressed: () {
                           _text.clear();
+                          setState(() {
+                          });
                         },
                       ),
                     )
