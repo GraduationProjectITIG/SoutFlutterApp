@@ -4,7 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: implementation_imports
 
 class PostModel {
-  String id, description, audio, video, talent;
+  String id, description, video, talent;
+  dynamic audio;
   dynamic image;
   dynamic owner;
   Timestamp date;
@@ -145,4 +146,3 @@ class PostModel {
     return postsHashMap.values.toList();
   }
 }
-

@@ -1,7 +1,11 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sout/Screens/home/recorderTest/recorderExample.dart';
+import 'package:sout/models/models.dart';
 
 class AddPost extends StatefulWidget {
   @override
@@ -9,6 +13,17 @@ class AddPost extends StatefulWidget {
 }
 
 class _AddPostState extends State<AddPost> {
+  //FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  DocumentReference _documentReference =
+      FirebaseFirestore.instance.collection('post').doc();
+
+  //post initialize
+  PostModel _myPost = PostModel();
+
+  //Text Controller
+  final myController = TextEditingController();
+
+  //Image picker
   File _image;
   final picker = ImagePicker();
 
@@ -36,9 +51,31 @@ class _AddPostState extends State<AddPost> {
     });
   }
 
+  //Recorder
+  bool wantToRecord = false;
+  String recordedFile;
+  setRecordedFile(myFile) {
+    recordedFile = myFile;
+  }
+  // bool isRecDone = false;
+  // Directory appDirectory;
+  // String recordedFile;
+  // _recDone() {
+  //   getApplicationDocumentsDirectory().then((value) {
+  //     appDirectory = value;
+  //     appDirectory.list().listen((onData) {
+  //       recordedFile = onData.path;
+  //     });
+  //   });
+  //   setState(() {
+  //     isRecDone = true;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
       ),
@@ -46,18 +83,28 @@ class _AddPostState extends State<AddPost> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            child: TextField(
-                autofocus: true,
-                cursorColor: Colors.redAccent,
-                cursorHeight: 40,
-                maxLength: 240,
-                minLines: 10,
-                maxLines: 11,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                )),
-          ),
+          TextField(
+              cursorColor: Colors.redAccent,
+              cursorHeight: 40,
+              maxLength: 240,
+              minLines: 1,
+              maxLines: 11,
+              controller: myController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+              )),
+          _image != null
+              ? Image(
+                  image: FileImage(_image),
+                  width: 200,
+                  height: 200,
+                )
+              : SizedBox(),
+          wantToRecord
+              ? RecorderExample(
+                  filePath: setRecordedFile,
+                )
+              : SizedBox(),
           Padding(
             padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 10),
             child: Row(
@@ -88,10 +135,17 @@ class _AddPostState extends State<AddPost> {
                 SizedBox(
                   width: 20,
                 ),
-                Icon(
-                  Icons.keyboard_voice,
-                  color: Colors.redAccent,
-                  size: 40,
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      wantToRecord = true;
+                    });
+                  },
+                  child: Icon(
+                    Icons.keyboard_voice,
+                    color: Colors.redAccent,
+                    size: 40,
+                  ),
                 )
               ],
             ),
@@ -106,8 +160,57 @@ class _AddPostState extends State<AddPost> {
           size: 40,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          var temp = myController.text;
+          print(recordedFile);
+          print(temp);
+          print(_image.path);
+          _uploadPost();
+        },
       ),
     );
+  }
+
+  _uploadPost() async {
+    _myPost.id = _documentReference.id;
+    _myPost.date = new Timestamp.now();
+    _myPost.description = myController.text;
+    _myPost.image = await uploadImageToFirebase();
+    _myPost.audio = await uploadAudioToFirebase();
+    //_myPost.owner
+    _documentReference.set(_myPost.toJson());
+  }
+
+  Future uploadImageToFirebase() async {
+    String fileName = _image.path;
+    firebase_storage.Reference firebaseStorageRef = firebase_storage
+        .FirebaseStorage.instance
+        .ref()
+        .child('/post/images/$fileName');
+    firebase_storage.UploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    var imageUrl = await (await uploadTask).ref.getDownloadURL();
+    print(imageUrl.toString());
+    return imageUrl.toString();
+    // firebase_storage.TaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    // taskSnapshot.ref.getDownloadURL().then(
+    //       (value) => print("Done: $value"),
+    //     );
+  }
+
+  Future<String> uploadAudioToFirebase() async {
+    File _audio = File(recordedFile);
+    String fileName = recordedFile;
+    firebase_storage.Reference firebaseStorageRef = firebase_storage
+        .FirebaseStorage.instance
+        .ref()
+        .child('/post/audio/$fileName');
+    firebase_storage.UploadTask uploadTask = firebaseStorageRef.putFile(_audio);
+    var audioUrl = await (await uploadTask).ref.getDownloadURL();
+    print(audioUrl.toString());
+    return audioUrl.toString();
+    // firebase_storage.TaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    // taskSnapshot.ref.getDownloadURL().then(
+    //       (value) => print("Done: $value"),
+    //     );
   }
 }

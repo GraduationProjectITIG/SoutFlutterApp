@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sout/Screens/home/audio.dart';
 
@@ -8,8 +9,14 @@ class PostCard extends StatefulWidget {
   String description;
   String img;
   String date;
+  String audio;
   PostCard(
-      {this.ownerName, this.ownerImg, this.description, this.img, this.date});
+      {this.ownerName,
+      this.ownerImg,
+      this.description,
+      this.img,
+      this.date,
+      this.audio});
   @override
   _PostCardState createState() => _PostCardState();
 }
@@ -48,6 +55,7 @@ class _PostCardState extends State<PostCard> {
                       backgroundColor: Colors.transparent,
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(widget.ownerName,
                             style: TextStyle(
@@ -71,7 +79,7 @@ class _PostCardState extends State<PostCard> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(120, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(90, 0, 0, 0),
                       child: PopupMenuButton(
                         icon: Icon(
                           Icons.more_horiz,
@@ -108,9 +116,9 @@ class _PostCardState extends State<PostCard> {
                               style: TextStyle(fontSize: 19),
                             ),
                           ),
-                          Audio(
-                              url:
-                                  "https://luan.xyz/files/audio/ambient_c_motion.mp3")
+                          widget.audio != ''
+                              ? Audio(url: widget.audio)
+                              : SizedBox()
                         ],
                       ),
                     )
