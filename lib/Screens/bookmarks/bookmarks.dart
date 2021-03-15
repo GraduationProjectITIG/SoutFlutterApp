@@ -158,354 +158,397 @@ class _BookmarksState extends State<Bookmarks> {
                               //       new Radius.circular(32.0)),
                               // ),
                               // elevation: 16,
-                              child: Container(
-                                decoration: new BoxDecoration(
-                                  boxShadow: [
-                                    new BoxShadow(
-                                      color: Colors.grey[300],
-                                      blurRadius: 25.0,
-                                    ),
-                                  ],
-                                ),
-                                // child: Card(
-                                // shape: RoundedRectangleBorder(
-                                //     // side: BorderSide(width: 0.2),
-                                //     borderRadius: BorderRadius.circular(12)),
-                                // margin: EdgeInsets.fromLTRB(7, 0, 7, 7),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Row(children: [
-                                        Text(list[index].owner['name'],
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.bold)),
-                                        SizedBox(width: 7),
-                                        CircleAvatar(
-                                          radius: 29.0,
-                                          backgroundImage: NetworkImage(
-                                              list[index].owner['picURL']),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                        SizedBox(width: 7),
-                                        Align(
-                                          alignment: Alignment.topRight,
-                                          child: PopupMenuButton(
-                                            icon: Icon(
-                                              Icons.more_horiz,
-                                              color: Colors.red[900],
-                                              size: 26,
-                                            ),
-                                            itemBuilder: (BuildContext bc) {
-                                              return _options
-                                                  .map((x) => PopupMenuItem(
-                                                        child: Text(x),
-                                                        value: x,
-                                                      ))
-                                                  .toList();
-                                            },
-                                            onSelected: (value) {
-                                              setState(() {
-                                                // _selectedItem = value;
-                                              });
-                                            },
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Container(
+                                      decoration: new BoxDecoration(
+                                        boxShadow: [
+                                          new BoxShadow(
+                                            color: Colors.grey[300],
+                                            blurRadius: 25.0,
                                           ),
-                                        ),
-                                      ]),
-                                      Column(
-                                        children: [
-                                          SizedBox(height: 5),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.public,
-                                                size: 14,
-                                                color: Colors.grey[600],
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        3, 0, 20, 0),
-                                                child: Text(
-                                                    list[index]
-                                                        .date
-                                                        .toDate()
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        color:
-                                                            Colors.grey[700])),
-                                              ),
-                                            ],
-                                          )
                                         ],
                                       ),
-
-                                      //   ],
-                                      // ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          5, 15, 0, 15),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      list[index].description,
-                                                      style: TextStyle(
-                                                          fontSize: 19),
+                                      // child: Card(
+                                      // shape: RoundedRectangleBorder(
+                                      //     // side: BorderSide(width: 0.2),
+                                      //     borderRadius: BorderRadius.circular(12)),
+                                      // margin: EdgeInsets.fromLTRB(7, 0, 7, 7),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Row(children: [
+                                              CircleAvatar(
+                                                radius: 29.0,
+                                                backgroundImage: NetworkImage(
+                                                    list[index]
+                                                        .owner['picURL']),
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                              ),
+                                              SizedBox(width: 7),
+                                              Text(list[index].owner['name'],
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Align(
+                                                alignment: Alignment.topRight,
+                                                child: PopupMenuButton(
+                                                  icon: Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(120, 0, 0, 0),
+                                                    child: Icon(
+                                                      Icons.more_horiz,
+                                                      color: Colors.red[900],
+                                                      size: 26,
                                                     ),
                                                   ),
+                                                  itemBuilder:
+                                                      (BuildContext bc) {
+                                                    return _options
+                                                        .map((x) =>
+                                                            PopupMenuItem(
+                                                              child: Text(x),
+                                                              value: x,
+                                                            ))
+                                                        .toList();
+                                                  },
+                                                  onSelected: (value) {
+                                                    setState(() {
+                                                      // _selectedItem = value;
+                                                    });
+                                                  },
                                                 ),
-                                                Image.network(
-                                                    list[index].image),
-                                                if (list[index].audio == "")
-                                                  Container()
-                                                else
-                                                  Audio(url: list[index].audio)
+                                              ),
+                                            ]),
+                                            Column(
+                                              children: [
+                                                SizedBox(height: 5),
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          66, 0, 0, 0),
+                                                      child: Icon(
+                                                        Icons.public,
+                                                        size: 14,
+                                                        color: Colors.grey[600],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          3, 0, 20, 0),
+                                                      child: Text(
+                                                          list[index]
+                                                              .date
+                                                              .toDate()
+                                                              .toLocal()
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              color: Colors
+                                                                  .grey[700])),
+                                                    ),
+                                                  ],
+                                                )
                                               ],
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                      const Divider(
-                                        height: 15,
-                                        thickness: 1,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            2, 0, 0, 0),
-                                        child: Row(
-                                          children: [
+
+                                            //   ],
+                                            // ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                5, 15, 0, 15),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Text(
+                                                            list[index]
+                                                                .description,
+                                                            style: TextStyle(
+                                                                fontSize: 19),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Image.network(
+                                                          list[index].image),
+                                                      if (list[index].audio ==
+                                                          "")
+                                                        Container()
+                                                      else
+                                                        Audio(
+                                                            url: list[index]
+                                                                .audio)
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            const Divider(
+                                              height: 15,
+                                              thickness: 1,
+                                            ),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.fromLTRB(
-                                                      0, 8, 34, 8),
+                                                      2, 0, 0, 0),
                                               child: Row(
                                                 children: [
                                                   Padding(
                                                     padding: const EdgeInsets
-                                                        .fromLTRB(0, 0, 0, 0),
+                                                        .fromLTRB(0, 8, 15, 8),
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  0, 0, 0, 0),
+                                                          child: IconButton(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .thumb_up_alt_outlined,
+                                                              size: 20,
+                                                              color: Colors
+                                                                  .red[900],
+                                                            ),
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                likes += 1;
+                                                              });
+                                                            },
+                                                          ),
+                                                        ),
+                                                        Text("Like",
+                                                            style: TextStyle(
+                                                                fontSize: 16)),
+                                                        if (likes == 0)
+                                                          SizedBox(
+                                                            width: 5,
+                                                          )
+                                                        else
+                                                          Row(
+                                                            children: [
+                                                              SizedBox(
+                                                                width: 5,
+                                                              ),
+                                                              Text(
+                                                                  likes
+                                                                      .toString(),
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold))
+                                                            ],
+                                                          )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(0, 8, 15, 8),
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  2, 0, 2, 0),
+                                                          child: Icon(
+                                                            Icons
+                                                                .mic_none_outlined,
+                                                            size: 20,
+                                                            color:
+                                                                Colors.red[900],
+                                                          ),
+                                                        ),
+                                                        Text("Voice",
+                                                            style: TextStyle(
+                                                              fontSize: 16,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 0, 0, 0),
+                                                        child: IconButton(
+                                                          icon: Icon(
+                                                            Icons
+                                                                .comment_outlined,
+                                                            size: 20,
+                                                            color:
+                                                                Colors.red[900],
+                                                          ),
+                                                          onPressed: () {
+                                                            showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (context) {
+                                                                return Dialog(
+                                                                  shape: RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10)),
+                                                                  elevation: 0,
+                                                                  child:
+                                                                      Container(
+                                                                    height:
+                                                                        540.0,
+                                                                    width: mediaQuery
+                                                                        .size
+                                                                        .width,
+                                                                    child:
+                                                                        ListView(
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                            height:
+                                                                                20),
+                                                                        Center(
+                                                                          child:
+                                                                              Text(
+                                                                            "Comments",
+                                                                            style:
+                                                                                TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                          ),
+                                                                        ),
+                                                                        SizedBox(
+                                                                            height:
+                                                                                5),
+                                                                        Comment(
+                                                                            ownerImg:
+                                                                                'https://picsum.photos/50/50',
+                                                                            ownerName:
+                                                                                "Mai Ahmed",
+                                                                            desc:
+                                                                                "Good Post",
+                                                                            date:
+                                                                                DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()),
+                                                                        Comment(
+                                                                            ownerImg:
+                                                                                'https://picsum.photos/50/50',
+                                                                            ownerName:
+                                                                                "Mai Ahmed",
+                                                                            desc:
+                                                                                "Hello Hello",
+                                                                            date:
+                                                                                DateFormat('yyyy-MM-dd').format(DateTime.now()).toString())
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                      Text("Comment",
+                                                          style: TextStyle(
+                                                            fontSize: 19,
+                                                          )),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const Divider(
+                                              height: 15,
+                                              thickness: 1,
+                                            ),
+                                            Row(children: [
+                                              CircleAvatar(
+                                                radius: 20.0,
+                                                backgroundImage: NetworkImage(
+                                                    list[index]
+                                                        .owner['picURL']),
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                              ),
+                                              SizedBox(width: 1),
+                                              Expanded(
+                                                  child: Stack(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(0, 5, 0, 0),
+                                                    child: TextField(
+                                                      style:
+                                                          TextStyle(height: 1),
+                                                      controller: _text,
+                                                      decoration:
+                                                          new InputDecoration(
+                                                        fillColor:
+                                                            Colors.grey[300],
+                                                        filled: true,
+                                                        border:
+                                                            new OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(35),
+                                                          borderSide:
+                                                              BorderSide(
+                                                            width: 0,
+                                                            style: BorderStyle
+                                                                .none,
+                                                          ),
+                                                        ),
+                                                        hintStyle:
+                                                            new TextStyle(
+                                                                color: Colors
+                                                                    .grey[700]),
+                                                        hintText:
+                                                            "Write a comment...",
+                                                        contentPadding:
+                                                            EdgeInsets.fromLTRB(
+                                                                14,
+                                                                11.5,
+                                                                0,
+                                                                11.5),
+                                                        isDense: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.topRight,
                                                     child: IconButton(
                                                       icon: Icon(
-                                                        Icons
-                                                            .thumb_up_alt_outlined,
-                                                        size: 22,
+                                                        Icons.send,
                                                         color: Colors.red[900],
                                                       ),
                                                       onPressed: () {
-                                                        setState(() {
-                                                          likes += 1;
-                                                        });
+                                                        _text.clear();
+                                                        setState(() {});
                                                       },
                                                     ),
-                                                  ),
-                                                  Text("Like",
-                                                      style: TextStyle(
-                                                          fontSize: 16)),
-                                                  if (likes == 0)
-                                                    SizedBox(
-                                                      width: 3,
-                                                    )
-                                                  else
-                                                    Row(
-                                                      children: [
-                                                        SizedBox(
-                                                          width: 3,
-                                                        ),
-                                                        Text(likes.toString(),
-                                                            style: TextStyle(
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold))
-                                                      ],
-                                                    )
+                                                  )
                                                 ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 8, 34, 8),
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(2, 0, 2, 0),
-                                                    child: Icon(
-                                                      Icons.mic_none_outlined,
-                                                      size: 23,
-                                                      color: Colors.red[900],
-                                                    ),
-                                                  ),
-                                                  Text("Voice",
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                      )),
-                                                ],
-                                              ),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          0, 0, 0, 0),
-                                                  child: IconButton(
-                                                    icon: Icon(
-                                                      Icons.comment_outlined,
-                                                      size: 22,
-                                                      color: Colors.red[900],
-                                                    ),
-                                                    onPressed: () {
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (context) {
-                                                          return Dialog(
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            elevation: 0,
-                                                            child: Container(
-                                                              height: 540.0,
-                                                              width: mediaQuery
-                                                                  .size.width,
-                                                              child: ListView(
-                                                                children: <
-                                                                    Widget>[
-                                                                  SizedBox(
-                                                                      height:
-                                                                          20),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      "Comments",
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                      height:
-                                                                          5),
-                                                                  Comment(
-                                                                      ownerImg:
-                                                                          'https://picsum.photos/50/50',
-                                                                      ownerName:
-                                                                          "Mai Ahmed",
-                                                                      desc:
-                                                                          "Good Post",
-                                                                      date: DateFormat(
-                                                                              'yyyy-MM-dd')
-                                                                          .format(
-                                                                              DateTime.now())
-                                                                          .toString()),
-                                                                  Comment(
-                                                                      ownerImg:
-                                                                          'https://picsum.photos/50/50',
-                                                                      ownerName:
-                                                                          "Mai Ahmed",
-                                                                      desc:
-                                                                          "Hello Hello",
-                                                                      date: DateFormat(
-                                                                              'yyyy-MM-dd')
-                                                                          .format(
-                                                                              DateTime.now())
-                                                                          .toString())
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                                Text("Comment",
-                                                    style: TextStyle(
-                                                      fontSize: 19,
-                                                    )),
-                                              ],
-                                            ),
+                                              )),
+                                            ])
                                           ],
                                         ),
                                       ),
-                                      const Divider(
-                                        height: 15,
-                                        thickness: 1,
-                                      ),
-                                      Row(children: [
-                                        CircleAvatar(
-                                          radius: 20.0,
-                                          backgroundImage: NetworkImage(
-                                              list[index].owner['picURL']),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                        SizedBox(width: 1),
-                                        Expanded(
-                                            child: Stack(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 5, 0, 0),
-                                              child: TextField(
-                                                style: TextStyle(height: 1),
-                                                controller: _text,
-                                                decoration: new InputDecoration(
-                                                  fillColor: Colors.grey[300],
-                                                  filled: true,
-                                                  border:
-                                                      new OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            35),
-                                                    borderSide: BorderSide(
-                                                      width: 0,
-                                                      style: BorderStyle.none,
-                                                    ),
-                                                  ),
-                                                  hintStyle: new TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  hintText:
-                                                      "Write a comment...",
-                                                  contentPadding:
-                                                      EdgeInsets.fromLTRB(
-                                                          14, 11.5, 0, 11.5),
-                                                  isDense: true,
-                                                ),
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment: Alignment.topRight,
-                                              child: IconButton(
-                                                icon: Icon(
-                                                  Icons.send,
-                                                  color: Colors.red[900],
-                                                ),
-                                                onPressed: () {
-                                                  _text.clear();
-                                                  setState(() {});
-                                                },
-                                              ),
-                                            )
-                                          ],
-                                        )),
-                                      ])
-                                    ],
-                                  ),
-                                ),
-                              ),
+                                    ),
+                                  ]),
                             );
                           });
                     },

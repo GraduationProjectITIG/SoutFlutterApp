@@ -5,13 +5,13 @@ import 'package:sout/blocs/blocs.dart';
 import 'package:sout/models/models.dart';
 import 'package:sout/utils/page_route_name.dart';
 import 'package:sout/utils/validator.dart';
+import 'package:sout/blocs/blocs.dart';
+import 'package:sout/models/models.dart';
 import '../service_locator.dart';
 import '../exetensions/exetnsion.dart';
 import 'bookmarks/bookmarks.dart';
 import 'signup.dart';
 import '../blocs/userbloc.dart';
-
-final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Login extends StatefulWidget {
   final String title = 'Sign In';

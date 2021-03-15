@@ -1,17 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gender_selector/gender_selector.dart';
 import 'package:sout/blocs/userbloc.dart';
 import 'package:sout/models/user.dart';
 import '../exetensions/exetnsion.dart';
+
+// import 'package:firebase_auth/firebase_auth.dart';
+// import '../exetensions/exetnsion.dart';
 import '../utils/utils.dart';
 import 'login.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'signup.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
+// final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Signup extends StatefulWidget {
   final String title = 'Registration';

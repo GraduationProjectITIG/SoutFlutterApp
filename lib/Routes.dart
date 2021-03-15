@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sout/Screens/screens.dart';
 
 import 'utils/page_route_name.dart';
 
 import './utils/utils.dart';
-import 'screens/screens.dart';
+// import 'screens/screens.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case PageRouteName.INITIAL:
-      //   return MaterialPageRoute<dynamic>(
-      //       builder: (_) => Splash(), settings: settings);
-      //   break;
-      // case PageRouteName.INTRO:
-      //   return MaterialPageRoute<dynamic>(
-      //       builder: (_) => Intro(), settings: settings);
-      //   break;
-      case PageRouteName.LOGIN:
+      case PageRouteName.INITIAL:
         return MaterialPageRoute<dynamic>(
             builder: (_) => Login(), settings: settings);
         break;
@@ -24,6 +17,14 @@ class Routes {
         return MaterialPageRoute<dynamic>(
             builder: (_) => Signup(), settings: settings);
         break;
+      case PageRouteName.NOTIFICATIONS:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => Notifications(), settings: settings);
+        break;
+      // case PageRouteName.REGISTER:
+      //   return MaterialPageRoute<dynamic>(
+      //       builder: (_) => Register(), settings: settings);
+      //   break;
       // case PageRouteName.FORGET_PASSWORD:
       //   return MaterialPageRoute<dynamic>(
       //       builder: (_) => ForgetPassword(), settings: settings);
