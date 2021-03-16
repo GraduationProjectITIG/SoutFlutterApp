@@ -35,10 +35,11 @@ class _DiscoverState extends State<Discover> {
 
   @override
   Widget build(BuildContext context) {
+    UserModel uss = this.widget.user;
     return DefaultTabController(
       length: talents.length,
       child: Scaffold(
-        drawer: buildDrawer(context),
+        drawer: buildDrawer(context,user:uss),
         appBar: AppBar(
           backgroundColor: Colors.red[700],
           bottom: TabBar(

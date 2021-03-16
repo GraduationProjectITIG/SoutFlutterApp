@@ -89,8 +89,7 @@ class _NotificationsState extends State<Notifications> {
             appBar: this.appBar,
             body: Container(
               width: mediaQuery.size.width,
-              height: mediaQuery.size.height -
-                  (mediaQuery.padding.top + appBar.toolbarHeight),
+              height: mediaQuery.size.height - (mediaQuery.padding.top),
               child: snapshot.data != null
                   ? ListView.builder(
                       physics: iosScrollPhysics(),

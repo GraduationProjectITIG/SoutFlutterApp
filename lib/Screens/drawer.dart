@@ -10,16 +10,14 @@ import 'package:sout/models/models.dart';
 
 import '../service_locator.dart';
 
-Drawer buildDrawer(BuildContext context,{UserModel user}) {
+Drawer buildDrawer(BuildContext context, {@required UserModel user}) {
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
       children: [
         DrawerHeader(
           child: Text(user.firstName != null
-              ? user.firstName +
-                  " " +
-                  user.lastName
+              ? user.firstName + " " + user.lastName
               : ""),
           decoration: BoxDecoration(
             color: Colors.blue,
@@ -32,8 +30,8 @@ Drawer buildDrawer(BuildContext context,{UserModel user}) {
           ),
           title: Text(AppLocalizations.of(context).translate('home')),
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Home()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Home(user: user)));
           },
         ),
         ListTile(
@@ -43,8 +41,10 @@ Drawer buildDrawer(BuildContext context,{UserModel user}) {
           ),
           title: Text(AppLocalizations.of(context).translate('notifications')),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Notifications(user: user)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Notifications(user: user)));
           },
         ),
         ListTile(
@@ -54,8 +54,8 @@ Drawer buildDrawer(BuildContext context,{UserModel user}) {
           ),
           title: Text(AppLocalizations.of(context).translate('discover')),
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Discover(user: user)));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Discover(user: user)));
           },
         ),
         ListTile(
@@ -85,6 +85,22 @@ Drawer buildDrawer(BuildContext context,{UserModel user}) {
                     builder: (context) => Bookmarks(
                           logedUser: user,
                         )));
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            FontAwesomeIcons.doorOpen,
+            size: 32,
+          ),
+          title: Text(AppLocalizations.of(context).translate('logout')),
+          onTap: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Bookmarks(
+                          logedUser: user,
+                        )),
+                (Route<dynamic> route) => false);
           },
         ),
       ],

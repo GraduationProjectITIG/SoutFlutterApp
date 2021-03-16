@@ -3,5 +3,7 @@
   "notifications":"Notifications",
   "discover":"Discover",
   "language":"Language",
-  "bookmarks":"Bookmarks"
+  "bookmarks":"Bookmarks",
+  "logout":"Logout"
+
 }

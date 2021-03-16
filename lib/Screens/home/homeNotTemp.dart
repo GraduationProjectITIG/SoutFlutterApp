@@ -19,7 +19,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   PostModel postModel = new PostModel();
   List<PostModel> posts = [];
-  
+
   LikeModel likeModel = new LikeModel();
   List<LikeModel> likes = [];
   List<LikeModel> likesList = [];
@@ -84,16 +84,16 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     UserModel uss = this.widget.user;
     return Scaffold(
-      drawer: buildDrawer(context,user:uss),
+      drawer: buildDrawer(context, user: uss),
       appBar: this.appBar,
       body: Container(
         child: ListView(
           children: [
             for (var post in posts)
               PostCard(
-                postId: post.id,
-                ownerName: post.owner["name"],
-                ownerImg: post.owner["picURL"],
+                postId: post.id.toString(),
+                ownerName: post.owner["name"].toString(),
+                ownerImg: post.owner["picURL"].toString(),
                 img: post.image.toString(),
                 description: post.description,
                 date: DateFormat('yyyy-MM-dd')

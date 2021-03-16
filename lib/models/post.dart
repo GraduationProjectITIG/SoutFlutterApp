@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PostModel {
   String id, description, audio, video, talent;
-  dynamic image;
+  String image;
   dynamic owner;
   Timestamp date;
   List<dynamic> like;
@@ -44,7 +44,7 @@ class PostModel {
         description: doc.data()["description"],
         audio: doc.data()["audio"],
         video: doc.data()["video"].toString(),
-        image: doc.data()["image"],
+        image: doc.data()["image"].toString(),
         talent: doc.data()["talent"],
         owner: doc.data()["owner"],
         date: doc.data()["date"],
