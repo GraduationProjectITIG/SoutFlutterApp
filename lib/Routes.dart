@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sout/Screens/screens.dart';
 
-import 'Screens/home/homeTemp.dart';
+import 'Screens/home/homeNotTemp.dart';
 import 'Screens/screens.dart';
 import 'utils/page_route_name.dart';
 

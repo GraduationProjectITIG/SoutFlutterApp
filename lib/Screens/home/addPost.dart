@@ -5,7 +5,10 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sout/Screens/home/recorderTest/recorderExample.dart';
+import 'package:sout/blocs/blocs.dart';
 import 'package:sout/models/models.dart';
+
+import '../../service_locator.dart';
 
 class AddPost extends StatefulWidget {
   @override
@@ -161,24 +164,37 @@ class _AddPostState extends State<AddPost> {
           color: Colors.white,
         ),
         onPressed: () {
-          var temp = myController.text;
-          print(recordedFile);
-          print(temp);
-          print(_image.path);
+          // var temp = myController.text;
+          // print(recordedFile);
+          // print(temp);
+          // print(_image.path);
           _uploadPost();
+          Navigator.pop(context, true);
         },
       ),
     );
   }
 
   _uploadPost() async {
-    _myPost.id = _documentReference.id;
-    _myPost.date = new Timestamp.now();
     _myPost.description = myController.text;
-    _myPost.image = await uploadImageToFirebase();
-    _myPost.audio = await uploadAudioToFirebase();
-    //_myPost.owner
-    _documentReference.set(_myPost.toJson());
+    if (_image != null) {
+      _myPost.image = await uploadImageToFirebase();
+    }
+    if (recordedFile != null) {
+      _myPost.audio = await uploadAudioToFirebase();
+    }
+    Map<String, dynamic> owner = Map();
+    // owner['id'] = sL<UserBloc>().user.id;
+    // owner['name'] =
+    //     sL<UserBloc>().user.firstName + ' ' + sL<UserBloc>().user.lastName;
+    // owner['picURL'] = sL<UserBloc>().user.picURL;
+    owner['id'] = "fakeID";
+    owner['name'] = "Mohamed Magdy";
+    owner['picURL'] =
+        "https://firebasestorage.googleapis.com/v0/b/sout-2d0f6.appspot.com/o/Users%2Fprofile_pics%2Fj9ppSV3XMgP96xIYYrfFLfN4B4u2?alt=media&token=1b1a772c-f4ad-4cab-8f46-dac3f1fffb1d";
+    _myPost.owner = owner;
+    PostModel postModel = new PostModel();
+    postModel.addPost(_myPost);
   }
 
   Future uploadImageToFirebase() async {
