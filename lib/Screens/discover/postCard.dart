@@ -2,25 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:sout/Screens/discover/comment.dart';
 import 'package:sout/Screens/home/audio.dart';
 import 'package:intl/intl.dart';
+import 'package:sout/models/models.dart';
 
 // ignore: must_be_immutable
 class PostCard extends StatefulWidget {
+  String postId;
   String ownerName;
   String ownerImg;
   String description;
   String img;
   String date;
   String audio;
-  int likes;
-  List<dynamic> comments;
+  List likes;
+  List comments;
   PostCard(
-      {this.ownerName,
+      {this.postId,
+      this.ownerName,
       this.ownerImg,
       this.description,
       this.img,
       this.date,
       this.audio,
-      this.likes,this.comments});
+      this.likes,
+      this.comments});
   @override
   _PostCardState createState() => _PostCardState();
 }
@@ -29,7 +33,11 @@ class _PostCardState extends State<PostCard> {
   // String _selectedItem = 'Bookmark';
   List _options = ['Bookmark', 'Report Post'];
   final _text = TextEditingController();
-  
+
+  CommentModel commentModel = new CommentModel();
+  List<CommentModel> comments = [];
+
+  LikeModel likeModel = LikeModel();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +66,8 @@ class _PostCardState extends State<PostCard> {
                     radius: 29.0,
                     backgroundImage: NetworkImage(widget.ownerImg),
                     backgroundColor: Colors.transparent,
-                  ),SizedBox(width: 7),
+                  ),
+                  SizedBox(width: 7),
                   Column(
                     children: [
                       Text(widget.ownerName,
@@ -137,11 +146,11 @@ class _PostCardState extends State<PostCard> {
                 thickness: 1,
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(2, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 8, 34, 8),
+                      padding: const EdgeInsets.fromLTRB(0, 8, 30, 8),
                       child: Row(
                         children: [
                           Padding(
@@ -153,29 +162,31 @@ class _PostCardState extends State<PostCard> {
                                 color: Colors.red[900],
                               ),
                               onPressed: () {
+                                LikeModel newLike = LikeModel();
+                                likeModel.addLike(widget.postId, newLike);
                                 setState(() {
-                                  widget.likes += 1;
+                                  widget.likes.add(newLike);
                                 });
                               },
                             ),
                           ),
                           Text("Like", style: TextStyle(fontSize: 19)),
-                          if (widget.likes == 0)
-                            SizedBox(
-                              width: 5,
-                            )
-                          else
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(widget.likes.toString(),
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))
-                              ],
-                            )
+                          // if (widget.likes == 0)
+                          //   SizedBox(
+                          //     width: 5,
+                          //   )
+                          // else
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(widget.likes.length.toString(),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -212,7 +223,6 @@ class _PostCardState extends State<PostCard> {
                               showDialog(
                                 context: context,
                                 builder: (context) {
-                                  
                                   return Dialog(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
@@ -233,22 +243,16 @@ class _PostCardState extends State<PostCard> {
                                             ),
                                           ),
                                           SizedBox(height: 5),
-                                          Comment(
-                                              ownerImg:
-                                                  'https://picsum.photos/50/50',
-                                              ownerName: "Mai Ahmed",
-                                              desc: "Good Post",
+                                          for (var comment in widget.comments)
+                                            Comment(
                                               date: DateFormat('yyyy-MM-dd')
-                                                  .format(DateTime.now())
-                                                  .toString()),
-                                                  Comment(
+                                                  .format(comment.date.toDate())
+                                                  .toString(),
+                                              desc: comment.description,
+                                              ownerName: comment.writer['name'],
                                               ownerImg:
-                                                  'https://picsum.photos/50/50',
-                                              ownerName: "Mai Ahmed",
-                                              desc: "Hello Hello",
-                                              date: DateFormat('yyyy-MM-dd')
-                                                  .format(DateTime.now())
-                                                  .toString())
+                                                  comment.writer['picURL'],
+                                            )
                                         ],
                                       ),
                                     ),
@@ -312,8 +316,13 @@ class _PostCardState extends State<PostCard> {
                           color: Colors.red[900],
                         ),
                         onPressed: () {
+                          CommentModel newComment = CommentModel();
+                          newComment.description = _text.text.toString();
+                          commentModel.addComment(widget.postId, newComment);
                           _text.clear();
                           setState(() {
+                            // ignore: unused_element
+                            widget.comments.add(newComment);
                           });
                         },
                       ),

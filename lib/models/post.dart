@@ -80,7 +80,7 @@ class PostModel {
         Firestore.instance.collection('post').document();
 
     ///////////////Test////////////////
-    // post.description = "Flutter Post";
+    // post.description = "Flutter Technology 2 Post";
     // post.owner = {
     //   "id": "j9ppSV3XMgP96xIYYrfFLfN4B4u2",
     //   "name": "Maaii Ahmed",

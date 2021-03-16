@@ -5,3 +5,4 @@ export 'chat.dart';
 export 'interest.dart';
 export 'talent.dart';
 export 'comment.dart';
+export 'like.dart';

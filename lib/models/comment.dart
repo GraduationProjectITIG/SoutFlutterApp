@@ -39,13 +39,13 @@ class CommentModel {
         Firestore.instance.collection('post').document(postId).collection('comment').doc();
 
     ///////////////Test////////////////
-    // comment.description = "Flutter Comment";
-    // comment.writer = {
-    //   "id": "j9ppSV3XMgP96xIYYrfFLfN4B4u2",
-    //   "name": "Maaii Ahmed",
-    //   "picURL":
-    //       "https://firebasestorage.googleapis.com/v0/b/sout-2d0f6.appspot.com/o/Users%2Fprofile_pics%2Fj9ppSV3XMgP96xIYYrfFLfN4B4u2?alt=media&token=1b1a772c-f4ad-4cab-8f46-dac3f1fffb1d"
-    // };
+    // comment.description = "Flutter Comment 4";
+    comment.writer = {
+      "id": "j9ppSV3XMgP96xIYYrfFLfN4B4u2",
+      "name": "Maaii Ahmed",
+      "picURL":
+          "https://firebasestorage.googleapis.com/v0/b/sout-2d0f6.appspot.com/o/Users%2Fprofile_pics%2Fj9ppSV3XMgP96xIYYrfFLfN4B4u2?alt=media&token=1b1a772c-f4ad-4cab-8f46-dac3f1fffb1d"
+    };
 
     // ignore: deprecated_member_use
     String commentId = documentReference.documentID;
@@ -70,7 +70,7 @@ class CommentModel {
         return commentModel;
       });
     });
-    print(commentsHashMap.values.toList()[1].writer["name"]);
+    print(commentsHashMap.values.toList().length);
 
     return commentsHashMap.values.toList();
   }
