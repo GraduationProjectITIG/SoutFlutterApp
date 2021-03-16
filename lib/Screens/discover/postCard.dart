@@ -13,8 +13,6 @@ class PostCard extends StatefulWidget {
   String img;
   String date;
   String audio;
-  List likes;
-  List comments;
   PostCard(
       {this.postId,
       this.ownerName,
@@ -22,9 +20,7 @@ class PostCard extends StatefulWidget {
       this.description,
       this.img,
       this.date,
-      this.audio,
-      this.likes,
-      this.comments});
+      this.audio,});
   @override
   _PostCardState createState() => _PostCardState();
 }
@@ -37,7 +33,33 @@ class _PostCardState extends State<PostCard> {
   CommentModel commentModel = new CommentModel();
   List<CommentModel> comments = [];
 
-  LikeModel likeModel = LikeModel();
+  LikeModel likeModel = new LikeModel();
+  List<LikeModel> likes = [];
+  @override
+  void initState() {
+    super.initState();
+    getPostLikes(widget.postId);
+    getPostAllComments(widget.postId);
+    setState(() {});
+  }
+
+  getPostLikes(String postId) {
+    likeModel.getPostLikes(postId).then((value) {
+      setState(() {likes = value;});
+      
+    }).whenComplete(() => likes);
+
+    print("hhhhhhhhhhh " + likes.length.toString());
+    setState(() {});
+    return likes;
+  }
+
+  getPostAllComments(String postId) {
+    commentModel.getPostComments(postId).then((value) =>  setState(() {comments = value;}));
+    print("hhhhhhhhhhh " + comments.length.toString());
+    setState(() {});
+    return comments;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +187,7 @@ class _PostCardState extends State<PostCard> {
                                 LikeModel newLike = LikeModel();
                                 likeModel.addLike(widget.postId, newLike);
                                 setState(() {
-                                  widget.likes.add(newLike);
+                                  likes.add(newLike);
                                 });
                               },
                             ),
@@ -181,7 +203,7 @@ class _PostCardState extends State<PostCard> {
                               SizedBox(
                                 width: 5,
                               ),
-                              Text(widget.likes.length.toString(),
+                              Text(likes.length.toString(),
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))
@@ -243,7 +265,7 @@ class _PostCardState extends State<PostCard> {
                                             ),
                                           ),
                                           SizedBox(height: 5),
-                                          for (var comment in widget.comments)
+                                          for (var comment in comments)
                                             Comment(
                                               date: DateFormat('yyyy-MM-dd')
                                                   .format(comment.date.toDate())
@@ -322,7 +344,7 @@ class _PostCardState extends State<PostCard> {
                           _text.clear();
                           setState(() {
                             // ignore: unused_element
-                            widget.comments.add(newComment);
+                            comments.add(newComment);
                           });
                         },
                       ),

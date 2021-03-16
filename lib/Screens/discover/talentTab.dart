@@ -17,8 +17,7 @@ class _TalentTabState extends State<TalentTab> {
 
   LikeModel likeModel = new LikeModel();
   List<LikeModel> likes = [];
- List<LikeModel> likesList = [];
-
+  List<LikeModel> likesList = [];
 
   CommentModel commentModel = new CommentModel();
   List<CommentModel> comments = [];
@@ -33,30 +32,6 @@ class _TalentTabState extends State<TalentTab> {
   getPostsbyTalent(id) async {
     posts = await postModel.getPostsbyTalent(id);
     setState(() {});
-  }
-
-  getPostLikes(PostModel post) {
-    likeModel.getPostLikes(post.id).then((value) {
-      likes = value;
-    });
-
-    print("hhhhhhhhhhh " + likes.length.toString());
-
-    return likes;
-  }
-
-  // getPostComments(PostModel post) {
-  //   commentModel.getPostComments(post.id).then((value) => comments = value);
-  //   print("hhhhhhhhhhh " + comments.length.toString());
-  //   setState(() {});
-  //   return comments.length;
-  // }
-
-  getPostAllComments(PostModel post) {
-    commentModel.getPostComments(post.id).then((value) => comments = value);
-    print("hhhhhhhhhhh " + comments.length.toString());
-    setState(() {});
-    return comments;
   }
 
   @override
@@ -75,8 +50,6 @@ class _TalentTabState extends State<TalentTab> {
                   .format(post.date.toDate())
                   .toString(),
               audio: post.audio,
-              likes: getPostLikes(post),
-              comments: getPostAllComments(post),
             ),
         ],
       ),

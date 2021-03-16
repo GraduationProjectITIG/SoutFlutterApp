@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sout/Screens/discover/talentTab.dart';
 import 'package:sout/models/models.dart';
+
+import '../drawer.dart';
 // import 'package:intl/intl.dart';
 // import 'package:sout/models/models.dart';
 // import 'postCard.dart';
@@ -34,6 +36,7 @@ class _DiscoverState extends State<Discover> {
     return DefaultTabController(
       length: talents.length,
       child: Scaffold(
+        drawer: buildDrawer(context),
         appBar: AppBar(
           backgroundColor: Colors.red[700],
           bottom: TabBar(
