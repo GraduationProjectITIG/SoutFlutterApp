@@ -14,7 +14,9 @@ class CommentModel {
     this.date,
   });
 
+
   Map<String, dynamic> toJson() {
+
     return {
       'id': id,
       'description': description,
@@ -25,22 +27,20 @@ class CommentModel {
 
   factory CommentModel.fromDocument(DocumentSnapshot doc) {
     return CommentModel(
-      id: doc.data()["id"],
-      description: doc.data()["description"],
-      writer: doc.data()["writer"],
-      date: doc.data()["date"],
-    );
+
+        id: doc.data()["id"],
+        description: doc.data()["description"],
+        writer: doc.data()["writer"],
+        date: doc.data()["date"],
+        );
   }
 
-  addComment(String postId, CommentModel comment) {
+  addComment(String postId,CommentModel comment) {
     // ignore: deprecated_member_use
     DocumentReference documentReference =
         // ignore: deprecated_member_use
-        Firestore.instance
-            .collection('post')
-            .document(postId)
-            .collection('comment')
-            .doc();
+        Firestore.instance.collection('post').document(postId).collection('comment').doc();
+
 
     ///////////////Test////////////////
     // comment.description = "Flutter Comment 4";
@@ -59,15 +59,15 @@ class CommentModel {
     documentReference.set(comment.toJson());
   }
 
-  Future<List<CommentModel>> getPostComments(String postId) async {
+
+ Future<List<CommentModel>> getPostComments(String postId) async {
     // ignore: deprecated_member_use
-    CollectionReference ref =
-        Firestore.instance.collection('post').doc(postId).collection('comment');
+    CollectionReference ref = Firestore.instance.collection('post').doc(postId).collection('comment');
     // ignore: deprecated_member_use
     QuerySnapshot commentsQuery = await ref.getDocuments();
 
-    HashMap<String, CommentModel> commentsHashMap =
-        new HashMap<String, CommentModel>();
+    HashMap<String, CommentModel> commentsHashMap = new HashMap<String, CommentModel>();
+
 
     // ignore: deprecated_member_use
     commentsQuery.documents.forEach((document) {
@@ -80,4 +80,6 @@ class CommentModel {
 
     return commentsHashMap.values.toList();
   }
+
 }
+
