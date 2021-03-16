@@ -13,6 +13,7 @@ class PostCard extends StatefulWidget {
   String img;
   String date;
   String audio;
+  UserModel user;
   PostCard(
       {this.postId,
       this.ownerName,
@@ -20,7 +21,7 @@ class PostCard extends StatefulWidget {
       this.description,
       this.img,
       this.date,
-      this.audio,});
+      this.audio,this.user});
   @override
   _PostCardState createState() => _PostCardState();
 }
@@ -185,6 +186,7 @@ class _PostCardState extends State<PostCard> {
                               ),
                               onPressed: () {
                                 LikeModel newLike = LikeModel();
+                                newLike.userid = widget.user.id;
                                 likeModel.addLike(widget.postId, newLike);
                                 setState(() {
                                   likes.add(newLike);
@@ -300,7 +302,7 @@ class _PostCardState extends State<PostCard> {
               Row(children: [
                 CircleAvatar(
                   radius: 20.0,
-                  backgroundImage: NetworkImage(widget.ownerImg),
+                  backgroundImage: NetworkImage(widget.user.picURL),
                   backgroundColor: Colors.transparent,
                 ),
                 SizedBox(width: 1),
@@ -340,6 +342,9 @@ class _PostCardState extends State<PostCard> {
                         onPressed: () {
                           CommentModel newComment = CommentModel();
                           newComment.description = _text.text.toString();
+                          newComment.writer['id']= widget.user.id;
+                          newComment.writer['name']= widget.user.firstName + " " +widget.user.lastName;
+                          newComment.writer['picURL']= widget.user.picURL;
                           commentModel.addComment(widget.postId, newComment);
                           _text.clear();
                           setState(() {

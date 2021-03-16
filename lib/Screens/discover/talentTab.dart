@@ -6,7 +6,8 @@ import 'package:intl/intl.dart';
 // ignore: must_be_immutable
 class TalentTab extends StatefulWidget {
   final String talentId;
-  TalentTab(this.talentId);
+  final UserModel user;
+  TalentTab(this.talentId,this.user);
   @override
   _TalentTabState createState() => _TalentTabState();
 }
@@ -50,6 +51,7 @@ class _TalentTabState extends State<TalentTab> {
                   .format(post.date.toDate())
                   .toString(),
               audio: post.audio,
+              user:widget.user
             ),
         ],
       ),
