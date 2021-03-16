@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 
 final ThemeData themeDataDark = ThemeData(
   brightness: Brightness.dark,
-  accentColor: Colors.green.shade600,
-  cursorColor: Colors.green[600],
-  colorScheme: ColorScheme.dark(primary: Colors.green[600]),
-  textSelectionColor: Colors.green[200],
-  textSelectionHandleColor: Colors.green,
-  hoverColor: Colors.green,
-  splashColor: Colors.green[900],
+  accentColor: Colors.redAccent,
+  cursorColor: Colors.redAccent,
+  // colorScheme: Colors.redAccent,
+  textSelectionColor: Colors.redAccent,
+  textSelectionHandleColor: Colors.redAccent,
+  hoverColor: Colors.redAccent,
+  splashColor: Colors.redAccent,
   cardColor: Colors.black54,
   dialogTheme: DialogTheme(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16.0),
     ),
   ),
-  iconTheme: IconThemeData(color: Colors.green[700]),
+  iconTheme: IconThemeData(
+    color: Colors.redAccent,
+  ),
   textTheme: const TextTheme(
     bodyText1: TextStyle(fontSize: 16, color: Colors.white),
   ),
@@ -32,7 +34,7 @@ final ThemeData themeDataDark = ThemeData(
   buttonTheme: ButtonThemeData(
     textTheme: ButtonTextTheme.primary,
     colorScheme: ColorScheme.dark(),
-    buttonColor: Colors.green,
+    buttonColor: Colors.redAccent,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16.0),
     ),
@@ -99,13 +101,13 @@ final ThemeData themeDataLight = ThemeData(
   ),
   buttonTheme: ButtonThemeData(
     textTheme: ButtonTextTheme.primary,
-    buttonColor: Colors.green,
+    buttonColor: Colors.redAccent,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(16.0),
     ),
   ),
   appBarTheme: const AppBarTheme(
-    color: Colors.green,
+    color: Colors.redAccent,
     elevation: 0,
   ),
 );

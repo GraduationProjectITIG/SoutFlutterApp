@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
                 postId: post.id,
                 ownerName: post.owner["name"],
                 ownerImg: post.owner["picURL"],
-                img: post.image,
+                img: post.image.toString(),
                 description: post.description,
                 date: DateFormat('yyyy-MM-dd')
                     .format(post.date.toDate())
