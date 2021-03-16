@@ -8,6 +8,8 @@ import '../drawer.dart';
 // import 'postCard.dart';
 
 class Discover extends StatefulWidget {
+  UserModel user;
+  Discover({this.user});
   @override
   State<StatefulWidget> createState() => _DiscoverState();
 }

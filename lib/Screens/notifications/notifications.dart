@@ -3,11 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sout/Screens/drawer.dart';
 import 'package:sout/blocs/blocs.dart';
+import 'package:sout/models/user.dart';
 import 'package:sout/utils/scroll_physics_like_ios.dart';
 import '../../service_locator.dart';
 
 class Notifications extends StatefulWidget {
-  Notifications({Key key}) : super(key: key);
+  UserModel user;
+  Notifications({this.user});
 
   @override
   _NotificationsState createState() => _NotificationsState();
@@ -33,7 +35,7 @@ class _NotificationsState extends State<Notifications> {
     return StreamBuilder<QuerySnapshot>(
         stream: _firestore
             .collection("Users")
-            .doc(sL<UserBloc>().user.id)
+            .doc(this.widget.user.id)
             .collection('notifications')
             .snapshots(),
         builder: (context, snapshot) {
@@ -74,7 +76,7 @@ class _NotificationsState extends State<Notifications> {
                   onTap: () {
                     _firestore
                         .collection("Users")
-                        .doc(sL<UserBloc>().user.id)
+                        .doc(this.widget.user.id)
                         .collection('notifications')
                         .doc(item.id)
                         .update({"seen": true});

@@ -43,7 +43,7 @@ class PostModel {
         id: doc.data()["id"],
         description: doc.data()["description"],
         audio: doc.data()["audio"],
-        video: doc.data()["video"],
+        video: doc.data()["video"].toString(),
         image: doc.data()["image"],
         talent: doc.data()["talent"],
         owner: doc.data()["owner"],

@@ -108,6 +108,7 @@ class UserModel {
                 return usr;
               }
             } else {
+              this._islogin = false;
               Fluttertoast.showToast(
                 msg: 'This user is deleted',
                 backgroundColor: Colors.red,
@@ -117,6 +118,7 @@ class UserModel {
             }
           });
         } else {
+          this._islogin = false;
           Fluttertoast.showToast(
             msg:
                 'This user is not registered or the password or the email is wrong.',
@@ -131,6 +133,7 @@ class UserModel {
         stackTrace: s,
       );
       usr = null;
+      this._islogin = false;
     }
     return usr;
   }
@@ -215,6 +218,4 @@ class UserModel {
       );
     }
   }
-
-
 }

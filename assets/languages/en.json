@@ -1,3 +1,7 @@
 {
-
+"home":"Home",
+  "notifications":"Notifications",
+  "discover":"Discover",
+  "language":"Language",
+  "bookmarks":"Bookmarks"
 }

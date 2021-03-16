@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sout/Screens/bookmarks/bookmarks.dart';
+import 'package:sout/Screens/discover/discover.dart';
+import 'package:sout/Screens/screens.dart';
+import 'package:sout/app/app_bloc.dart';
+import 'package:sout/app/app_localizations.dart';
 import 'package:sout/blocs/blocs.dart';
+import 'package:sout/models/models.dart';
 
 import '../service_locator.dart';
 
-Drawer buildDrawer(BuildContext context) {
+Drawer buildDrawer(BuildContext context,{UserModel user}) {
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
       children: [
         DrawerHeader(
-          child: Text(sL<UserBloc>().user.firstName != null
-              ? sL<UserBloc>().user.firstName +
+          child: Text(user.firstName != null
+              ? user.firstName +
                   " " +
-                  sL<UserBloc>().user.lastName
+                  user.lastName
               : ""),
           decoration: BoxDecoration(
             color: Colors.blue,
@@ -24,56 +30,62 @@ Drawer buildDrawer(BuildContext context) {
             FontAwesomeIcons.home,
             size: 32,
           ),
-          title: Text('Home'),
-          onTap: () {},
+          title: Text(AppLocalizations.of(context).translate('home')),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Home()));
+          },
         ),
         ListTile(
           leading: Icon(
             FontAwesomeIcons.bell,
             size: 32,
           ),
-          title: Text('Notifications'),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: Icon(
-            FontAwesomeIcons.envelope,
-            size: 32,
-          ),
-          title: Text('Messages'),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: Icon(
-            FontAwesomeIcons.music,
-            size: 32,
-          ),
-          title: Text('Talents'),
-          onTap: () {},
+          title: Text(AppLocalizations.of(context).translate('notifications')),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Notifications(user: user)));
+          },
         ),
         ListTile(
           leading: Icon(
             FontAwesomeIcons.hashtag,
             size: 32,
           ),
-          title: Text('Discover'),
-          onTap: () {},
+          title: Text(AppLocalizations.of(context).translate('discover')),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Discover(user: user)));
+          },
         ),
         ListTile(
           leading: Icon(
-            FontAwesomeIcons.cog,
+            FontAwesomeIcons.language,
             size: 32,
           ),
-          title: Text('Settings'),
-          onTap: () {},
+          title: Text(AppLocalizations.of(context).translate('language')),
+          onTap: () {
+            print(AppLocalizations.of(context).locale.toString());
+            if (AppLocalizations.of(context).locale.toLanguageTag() == "ar")
+              sL<AppBloc>().setLanguage(LANGUAGES.EN);
+            if (AppLocalizations.of(context).locale.toLanguageTag() == "en")
+              sL<AppBloc>().setLanguage(LANGUAGES.AR);
+          },
         ),
         ListTile(
           leading: Icon(
             FontAwesomeIcons.bookmark,
             size: 32,
           ),
-          title: Text('Bookmarks'),
-          onTap: () {},
+          title: Text(AppLocalizations.of(context).translate('bookmarks')),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Bookmarks(
+                          logedUser: user,
+                        )));
+          },
         ),
       ],
     ),

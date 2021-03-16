@@ -5,19 +5,19 @@ import 'package:sout/models/models.dart';
 import '../service_locator.dart';
 
 class UserBloc implements BaseBloc {
-  static final UserModel _user = UserModel();
+  static final UserModel user = UserModel();
 
   final BehaviorSubject<UserModel> _userController =
-      BehaviorSubject<UserModel>.seeded(_user);
+      BehaviorSubject<UserModel>.seeded(user);
 
   Stream<UserModel> get stream => _userController.stream;
 
-  UserModel get user => _user;
+  // UserModel get userL => user;
   UserModel nUser = new UserModel();
 
   Future login(email, password) async {
-    await _user.login(email, password).then((value) => {
-          print("value"),
+    await user.login(email, password).then((value) => {
+          print(value),
           _userController.add(value),
           nUser = value,
           print(nUser.firstName)
@@ -25,7 +25,7 @@ class UserBloc implements BaseBloc {
     return nUser;
   }
 
-  bool get isLogin => _user.islogin;
+  bool get isLogin => user.islogin;
 
   Future register(
     firstName,
@@ -48,13 +48,13 @@ class UserBloc implements BaseBloc {
     user.birthDate = birthDate;
     print("regUsBloc");
     print(email);
-    await _user.register(user);
+    await user.register(user);
   }
 
   // Future updateProfile() async {} //TODO later
 
   Future resetPassword(email) async {
-    await _user.resetPassword(email);
+    await user.resetPassword(email);
   }
 
   @override

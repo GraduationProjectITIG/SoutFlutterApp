@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sout/Screens/home/homeNotTemp.dart';
 import 'package:sout/blocs/blocs.dart';
 import 'package:sout/models/models.dart';
 import 'package:sout/utils/page_route_name.dart';
@@ -26,17 +27,12 @@ class _LoginState extends State<Login> {
     final appTitle = 'SOUT';
 
     // return Scaffold();
-    return MaterialApp(
-      title: appTitle,
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(appTitle),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appTitle),
-        ),
-        body: Center(
+      body: SingleChildScrollView(
+        child: Center(
             child: Container(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,30 +40,30 @@ class _LoginState extends State<Login> {
                 MyCustomForm(),
               ]),
         )),
-
-        // Center(child:
-        // Container(
-        //   child:Column(children
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        // : <Widget>[
-        //   MyCustomForm(),
-
-        //   ])
-
-        // )
-        // ),
-
-        //   floatingActionButton: FloatingActionButton(
-        //   onPressed: (){
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (context)=>MyPage()),
-        //     );
-        //   },
-        //   tooltip: 'Increment',
-        //   child: Icon(Icons.add),
-        // ),
       ),
+
+      // Center(child:
+      // Container(
+      //   child:Column(children
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      // : <Widget>[
+      //   MyCustomForm(),
+
+      //   ])
+
+      // )
+      // ),
+
+      //   floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (context)=>MyPage()),
+      //     );
+      //   },
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }
@@ -80,7 +76,7 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class MyCustomFormState extends State<MyCustomForm> {
-  UserBloc _userBloc = UserBloc();
+  // UserBloc _userBloc = UserBloc();
   UserModel uss = UserModel();
   // UserBloc get user => _userBloc;
   bool loading = false;
@@ -133,20 +129,15 @@ class MyCustomFormState extends State<MyCustomForm> {
                       if (!_formKey.currentState.validate()) {
                         return;
                       }
-                      // uss = await _userBloc.login(
-                      //     _emailController.text, _passwordController.text);
+                      uss = await sL<UserBloc>().login(
+                          _emailController.text, _passwordController.text);
 
-                      // if (sL<UserBloc>().isLogin) {
-                      //   print("loginmmmm");
-                      //   print(uss.firstName);
-                      // }
-
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Bookmarks(logedUser: uss)));
-
-                      // _signInWithEmailAndPassword(context);
+                      if (sL<UserBloc>().isLogin) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Home(user: uss)));
+                      }
                     },
                     child: Text('Login'),
                   ),
@@ -254,8 +245,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                                                 ),
                                               ),
                                               onTap: () => {
-                                                    _userBloc.resetPassword(
-                                                        _emailController.text),
+                                                    sL<UserBloc>()
+                                                        .resetPassword(
+                                                            _emailController
+                                                                .text),
                                                     Navigator.pop(dialogContext)
                                                   }),
                                         ],

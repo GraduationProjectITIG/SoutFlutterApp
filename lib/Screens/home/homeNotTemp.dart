@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:sout/blocs/blocs.dart';
 import 'package:sout/models/comment.dart';
 import 'package:sout/models/like.dart';
 import 'package:sout/models/models.dart';
 import 'package:intl/intl.dart';
+import '../../service_locator.dart';
 import '../drawer.dart';
 import 'addPost.dart';
 import 'postCard.dart';
 
 class Home extends StatefulWidget {
+  UserModel user;
+  Home({this.user});
   @override
   _HomeState createState() => _HomeState();
 }
@@ -15,7 +19,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   PostModel postModel = new PostModel();
   List<PostModel> posts = [];
-
+  
   LikeModel likeModel = new LikeModel();
   List<LikeModel> likes = [];
   List<LikeModel> likesList = [];
@@ -28,6 +32,7 @@ class _HomeState extends State<Home> {
     super.initState();
     print("in init state");
     getAllPosts();
+    // print('User ${sL<UserBloc>().userL.id}');
     // setState(() {});
   }
 
@@ -77,8 +82,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    UserModel uss = this.widget.user;
     return Scaffold(
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context,user:uss),
       appBar: this.appBar,
       body: Container(
         child: ListView(
