@@ -14,7 +14,9 @@ class CommentModel {
     this.date,
   });
 
-   Map<String, dynamic> toJson() {
+
+  Map<String, dynamic> toJson() {
+
     return {
       'id': id,
       'description': description,
@@ -25,6 +27,7 @@ class CommentModel {
 
   factory CommentModel.fromDocument(DocumentSnapshot doc) {
     return CommentModel(
+
         id: doc.data()["id"],
         description: doc.data()["description"],
         writer: doc.data()["writer"],
@@ -37,6 +40,7 @@ class CommentModel {
     DocumentReference documentReference =
         // ignore: deprecated_member_use
         Firestore.instance.collection('post').document(postId).collection('comment').doc();
+
 
     ///////////////Test////////////////
     // comment.description = "Flutter Comment 4";
@@ -55,6 +59,7 @@ class CommentModel {
     documentReference.set(comment.toJson());
   }
 
+
  Future<List<CommentModel>> getPostComments(String postId) async {
     // ignore: deprecated_member_use
     CollectionReference ref = Firestore.instance.collection('post').doc(postId).collection('comment');
@@ -62,6 +67,7 @@ class CommentModel {
     QuerySnapshot commentsQuery = await ref.getDocuments();
 
     HashMap<String, CommentModel> commentsHashMap = new HashMap<String, CommentModel>();
+
 
     // ignore: deprecated_member_use
     commentsQuery.documents.forEach((document) {
@@ -74,4 +80,6 @@ class CommentModel {
 
     return commentsHashMap.values.toList();
   }
+
 }
+

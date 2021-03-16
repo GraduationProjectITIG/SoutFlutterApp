@@ -3,7 +3,7 @@ import 'package:sout/Screens/discover/discover.dart';
 import 'package:sout/Screens/discover/test.dart';
 import 'package:sout/Screens/screens.dart';
 
-import 'Screens/home/home.dart';
+import 'Screens/home/homeNotTemp.dart';
 import 'Screens/screens.dart';
 import 'utils/page_route_name.dart';
 

@@ -53,6 +53,7 @@ class PostModel {
   }
 
   Future<List<PostModel>> getAllPosts() async {
+    print("inside model");
     // ignore: deprecated_member_use
     CollectionReference ref = Firestore.instance.collection('post');
     // ignore: deprecated_member_use
@@ -67,8 +68,8 @@ class PostModel {
         return postModel;
       });
     });
-    print(postsHashMap.values.toList()[1].owner["id"]);
-    print(postsHashMap.values.toList()[7].owner["name"]);
+    // print(postsHashMap.values.toList()[1].owner["id"]);
+    // print(postsHashMap.values.toList()[7].owner["name"]);
 
     return postsHashMap.values.toList();
   }
@@ -156,5 +157,4 @@ class PostModel {
     return postsHashMap.values.toList();
   }
 }
-
 
