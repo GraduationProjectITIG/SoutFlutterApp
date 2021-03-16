@@ -85,7 +85,7 @@ class _NotificationsState extends State<Notifications> {
             }
           }
           return Scaffold(
-            drawer: buildDrawer(context),
+            drawer: buildDrawer(context, user: this.widget.user),
             appBar: this.appBar,
             body: Container(
               width: mediaQuery.size.width,

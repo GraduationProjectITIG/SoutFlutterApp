@@ -129,15 +129,17 @@ class MyCustomFormState extends State<MyCustomForm> {
                       if (!_formKey.currentState.validate()) {
                         return;
                       }
-                      uss = await sL<UserBloc>().login(
-                          _emailController.text, _passwordController.text);
-
-                      if (sL<UserBloc>().isLogin) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Home(user: uss)));
-                      }
+                      await uss
+                          .login(
+                              _emailController.text, _passwordController.text)
+                          .then((value) {
+                        if (uss.islogin) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Home(user: uss)));
+                        }
+                      });
                     },
                     child: Text('Login'),
                   ),
