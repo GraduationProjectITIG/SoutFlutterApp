@@ -30,7 +30,7 @@ class LikeModel {
             .doc();
 
     ///////////////Test////////////////
-    like.userid = "j9ppSV3XMgP96xIYYrfFLfN4B4u2";
+    // like.userid = "j9ppSV3XMgP96xIYYrfFLfN4B4u2";
 
     documentReference.set(like.toJson());
   }

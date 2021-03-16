@@ -59,7 +59,7 @@ class _DiscoverState extends State<Discover> {
         ),
         body: TabBarView(
           children: [
-            for (var talent in talents) TalentTab(talent.id),
+            for (var talent in talents) TalentTab(talent.id,widget.user),
           ],
         ),
       ),
