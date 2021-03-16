@@ -2,6 +2,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sout/base_bloc.dart';
 import 'package:sout/models/models.dart';
 
+import '../service_locator.dart';
+
 class UserBloc implements BaseBloc {
   static final UserModel _user = UserModel();
 
@@ -11,16 +13,21 @@ class UserBloc implements BaseBloc {
   Stream<UserModel> get stream => _userController.stream;
 
   UserModel get user => _user;
+  UserModel nUser = new UserModel();
 
   Future login(email, password) async {
-    await _user
-        .login(email, password)
-        .then((value) => _userController.add(value));
+    await _user.login(email, password).then((value) => {
+          print("value"),
+          _userController.add(value),
+          nUser = value,
+          print(nUser.firstName)
+        });
+    return nUser;
   }
 
   bool get isLogin => _user.islogin;
 
-  Future register({
+  Future register(
     firstName,
     lastName,
     email,
@@ -29,7 +36,7 @@ class UserBloc implements BaseBloc {
     mobile,
     gender,
     birthDate,
-  }) async {
+  ) async {
     UserModel user = UserModel();
     user.firstName = firstName;
     user.lastName = lastName;
@@ -39,6 +46,8 @@ class UserBloc implements BaseBloc {
     user.mobile = mobile;
     user.gender = gender;
     user.birthDate = birthDate;
+    print("regUsBloc");
+    print(email);
     await _user.register(user);
   }
 

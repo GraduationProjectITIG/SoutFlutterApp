@@ -17,9 +17,16 @@ class Routes {
         return MaterialPageRoute<dynamic>(
             builder: (_) => Test(), settings: settings);
         break;
+
+      case PageRouteName.SIGNUP:
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => Signup(), settings: settings);
+        break;
+
       // return MaterialPageRoute<dynamic>(
       //     builder: (_) => Login(), settings: settings);
       // break;
+
       case PageRouteName.NOTIFICATIONS:
         return MaterialPageRoute<dynamic>(
             builder: (_) => Notifications(), settings: settings);

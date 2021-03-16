@@ -35,6 +35,7 @@ class _PostCardState extends State<PostCard> {
   List _options = ['Bookmark', 'Report Post'];
   final _text = TextEditingController();
 
+
   CommentModel commentModel = new CommentModel();
   List<CommentModel> comments = [];
 
@@ -71,6 +72,7 @@ class _PostCardState extends State<PostCard> {
     setState(() {});
     return comments;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -171,6 +173,35 @@ class _PostCardState extends State<PostCard> {
                           Audio(url: widget.audio)
                       ],
                     ),
+// <<<<<<< Fatma
+//                     Padding(
+//                       padding: const EdgeInsets.fromLTRB(169, 0, 0, 0),
+//                       child: PopupMenuButton(
+//                         icon: Icon(
+//                           Icons.more_horiz,
+//                           color: Colors.red[900],
+//                           size: 26,
+//                         ),
+//                         itemBuilder: (BuildContext bc) {
+//                           return _options
+//                               .map((x) => PopupMenuItem(
+//                                     child: Text(x),
+//                                     value: x,
+//                                   ))
+//                               .toList();
+//                         },
+//                         onSelected: (value) {
+//                           setState(() {
+//                             // _selectedItem = value;
+//                           });
+//                         },
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//                 Image.network(widget.img),
+//                 Row(
+// =======
                   )
                 ],
               ),
@@ -181,6 +212,7 @@ class _PostCardState extends State<PostCard> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Row(
+// >>>>>>> master
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 8, 30, 8),
@@ -332,6 +364,14 @@ class _PostCardState extends State<PostCard> {
                               width: 0,
                               style: BorderStyle.none,
                             ),
+// <<<<<<< Fatma
+//                             hintStyle: new TextStyle(color: Colors.grey[700]),
+//                             hintText: "Write a comment...",
+//                             contentPadding:
+//                                 EdgeInsets.fromLTRB(14, 11.5, 0, 11.5),
+//                             isDense: true,
+// =======
+// >>>>>>> master
                           ),
                           hintStyle: new TextStyle(color: Colors.grey[700]),
                           hintText: "Write a comment...",

@@ -5,7 +5,7 @@ extension TextWidget on Widget {
     return Container(
       height: mediaQuery.size.height * 0.08,
       margin: EdgeInsets.symmetric(
-        vertical: mediaQuery.size.height * 0.015,
+        vertical: mediaQuery.size.height * 0.01,
         horizontal: mediaQuery.size.width * 0.05,
       ),
       padding: EdgeInsets.symmetric(
