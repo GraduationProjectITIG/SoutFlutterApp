@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sout/Screens/discover/discover.dart';
+import 'package:sout/Screens/discover/test.dart';
 import 'package:sout/Screens/screens.dart';
 
+import 'Screens/home/homeNotTemp.dart';
+import 'Screens/screens.dart';
 import 'utils/page_route_name.dart';
 
 import './utils/utils.dart';
@@ -11,12 +15,18 @@ class Routes {
     switch (settings.name) {
       case PageRouteName.INITIAL:
         return MaterialPageRoute<dynamic>(
-            builder: (_) => Login(), settings: settings);
+            builder: (_) => Test(), settings: settings);
         break;
+
       case PageRouteName.SIGNUP:
         return MaterialPageRoute<dynamic>(
             builder: (_) => Signup(), settings: settings);
         break;
+
+      // return MaterialPageRoute<dynamic>(
+      //     builder: (_) => Login(), settings: settings);
+      // break;
+
       case PageRouteName.NOTIFICATIONS:
         return MaterialPageRoute<dynamic>(
             builder: (_) => Notifications(), settings: settings);

@@ -103,4 +103,6 @@ class _AudioState extends State<Audio> {
     String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
     return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
   }
+
 }
+

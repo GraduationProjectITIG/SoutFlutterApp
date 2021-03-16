@@ -7,6 +7,9 @@ import 'app_bloc.dart';
 import 'app_localizations.dart';
 // import '../blocs/blocs.dart';
 
+//trying chat model
+import '../models/chat.dart';
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -59,6 +62,9 @@ class _MyAppState extends State<MyApp> {
     // setState(() {});
 
     super.initState();
+    // ChatModel myChat;
+    // myChat.getChats();
+    print("I am ok");
   }
 
   @override

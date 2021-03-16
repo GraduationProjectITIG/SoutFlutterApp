@@ -8,8 +8,8 @@ class PostModel {
   dynamic image;
   dynamic owner;
   Timestamp date;
-  List<dynamic> likes;
-  List<dynamic> comments;
+  List<dynamic> like;
+  List<dynamic> comment;
 
   PostModel(
       {this.id = "",
@@ -20,8 +20,8 @@ class PostModel {
       this.talent = "",
       this.owner,
       this.date,
-      this.likes,
-      this.comments});
+      this.like,
+      this.comment});
 
   Map<String, dynamic> toJson() {
     return {
@@ -33,8 +33,8 @@ class PostModel {
       'talent': talent,
       'owner': owner,
       'date': date,
-      'likes': likes,
-      'comments': comments,
+      'like': like,
+      'comment': comment,
     };
   }
 
@@ -48,11 +48,12 @@ class PostModel {
         talent: doc.data()["talent"],
         owner: doc.data()["owner"],
         date: doc.data()["date"],
-        likes: doc.data()["likes"],
-        comments: doc.data()["comments"]);
+        like: doc.data()["like"],
+        comment: doc.data()["comment"]);
   }
 
   Future<List<PostModel>> getAllPosts() async {
+    print("inside model");
     // ignore: deprecated_member_use
     CollectionReference ref = Firestore.instance.collection('post');
     // ignore: deprecated_member_use
@@ -67,8 +68,8 @@ class PostModel {
         return postModel;
       });
     });
-    print(postsHashMap.values.toList()[1].owner["id"]);
-    print(postsHashMap.values.toList()[7].owner["name"]);
+    // print(postsHashMap.values.toList()[1].owner["id"]);
+    // print(postsHashMap.values.toList()[7].owner["name"]);
 
     return postsHashMap.values.toList();
   }
@@ -80,7 +81,7 @@ class PostModel {
         Firestore.instance.collection('post').document();
 
     ///////////////Test////////////////
-    // post.description = "Flutter Post";
+    // post.description = "Flutter Technology 2 Post";
     // post.owner = {
     //   "id": "j9ppSV3XMgP96xIYYrfFLfN4B4u2",
     //   "name": "Maaii Ahmed",
@@ -99,6 +100,17 @@ class PostModel {
   deletePost(String id) {
     // ignore: deprecated_member_use
     Firestore.instance.collection('post').doc(id).delete();
+  }
+
+  Future<int> getPostLikes(PostModel post) async {
+    // ignore: deprecated_member_use
+    CollectionReference ref =
+        // ignore: deprecated_member_use
+        Firestore.instance.collection('post').doc(post.id).collection('like');
+    // ignore: deprecated_member_use
+    QuerySnapshot likesQuery = await ref.getDocuments();
+
+    return likesQuery.docs.length;
   }
 
   Future<List<PostModel>> getPostsbyTalent(String talentId) async {

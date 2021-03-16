@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:sout/Screens/discover/comment.dart';
 import 'package:sout/Screens/home/audio.dart';
 import 'package:intl/intl.dart';
-import 'package:sout/models/comment.dart';
-import 'package:sout/models/like.dart';
 import 'package:sout/models/models.dart';
-
-import 'comment.dart';
 
 // ignore: must_be_immutable
 class PostCard extends StatefulWidget {
@@ -17,15 +13,14 @@ class PostCard extends StatefulWidget {
   String img;
   String date;
   String audio;
-  PostCard({
-    this.postId,
-    this.ownerName,
-    this.ownerImg,
-    this.description,
-    this.img,
-    this.date,
-    this.audio,
-  });
+  PostCard(
+      {this.postId,
+      this.ownerName,
+      this.ownerImg,
+      this.description,
+      this.img,
+      this.date,
+      this.audio,});
   @override
   _PostCardState createState() => _PostCardState();
 }
@@ -35,13 +30,11 @@ class _PostCardState extends State<PostCard> {
   List _options = ['Bookmark', 'Report Post'];
   final _text = TextEditingController();
 
-
   CommentModel commentModel = new CommentModel();
   List<CommentModel> comments = [];
 
   LikeModel likeModel = new LikeModel();
   List<LikeModel> likes = [];
-  List<LikeModel> likesList = [];
   @override
   void initState() {
     super.initState();
@@ -52,9 +45,8 @@ class _PostCardState extends State<PostCard> {
 
   getPostLikes(String postId) {
     likeModel.getPostLikes(postId).then((value) {
-      setState(() {
-        likes = value;
-      });
+      setState(() {likes = value;});
+      
     }).whenComplete(() => likes);
 
     print("hhhhhhhhhhh " + likes.length.toString());
@@ -63,16 +55,11 @@ class _PostCardState extends State<PostCard> {
   }
 
   getPostAllComments(String postId) {
-    commentModel.getPostComments(postId).then((value) {
-      setState(() {
-        comments = value;
-      });
-    });
+    commentModel.getPostComments(postId).then((value) =>  setState(() {comments = value;}));
     print("hhhhhhhhhhh " + comments.length.toString());
     setState(() {});
     return comments;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -173,35 +160,6 @@ class _PostCardState extends State<PostCard> {
                           Audio(url: widget.audio)
                       ],
                     ),
-// <<<<<<< Fatma
-//                     Padding(
-//                       padding: const EdgeInsets.fromLTRB(169, 0, 0, 0),
-//                       child: PopupMenuButton(
-//                         icon: Icon(
-//                           Icons.more_horiz,
-//                           color: Colors.red[900],
-//                           size: 26,
-//                         ),
-//                         itemBuilder: (BuildContext bc) {
-//                           return _options
-//                               .map((x) => PopupMenuItem(
-//                                     child: Text(x),
-//                                     value: x,
-//                                   ))
-//                               .toList();
-//                         },
-//                         onSelected: (value) {
-//                           setState(() {
-//                             // _selectedItem = value;
-//                           });
-//                         },
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//                 Image.network(widget.img),
-//                 Row(
-// =======
                   )
                 ],
               ),
@@ -212,7 +170,6 @@ class _PostCardState extends State<PostCard> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Row(
-// >>>>>>> master
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 8, 30, 8),
@@ -364,14 +321,6 @@ class _PostCardState extends State<PostCard> {
                               width: 0,
                               style: BorderStyle.none,
                             ),
-// <<<<<<< Fatma
-//                             hintStyle: new TextStyle(color: Colors.grey[700]),
-//                             hintText: "Write a comment...",
-//                             contentPadding:
-//                                 EdgeInsets.fromLTRB(14, 11.5, 0, 11.5),
-//                             isDense: true,
-// =======
-// >>>>>>> master
                           ),
                           hintStyle: new TextStyle(color: Colors.grey[700]),
                           hintText: "Write a comment...",
